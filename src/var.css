@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap");
+html * {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.lightBox-contents p {
+  font-family: "IBM Plex Serif", serif !important;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 1.25;
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 600;
+  margin-top: 1.15em;
+  margin-bottom: 0.45em;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+h1 > small {
+  color: black;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 24px;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h3 {
+  font-size: 18px;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h4 {
+  font-size: 14px;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+mark {
+  background-color: #e1f8dd;
+  font-style: italic;
+}
+
+mark:hover {
+  background-color: #b2f2b2;
+}
+
+/*Tooltip Test*/
+mark {
+  font-style: italic;
+}
+
+/*# sourceMappingURL=var.css.map */
