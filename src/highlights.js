@@ -23,9 +23,6 @@ export function Highlights (props){
 
     const classes = useStyles();
 
-
-
-
     function seeConnections(i) {
         props.seeConnections(i)
     }
@@ -122,7 +119,9 @@ export function Highlights (props){
                         style={appBarStyle}
                     >
 
-                        <Tab style={tabStyle} label="Both" {...a11yProps(0)} />
+                        <Tab style={tabStyle}
+                             label="Both"
+                             {...a11yProps(0)} />
                         <Tab style={tabStyle} label="Only missing" {...a11yProps(1)} />
                         <Tab style={tabStyle} label="Only conflict" {...a11yProps(2)} />
                     </Tabs>
