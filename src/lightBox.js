@@ -2,7 +2,7 @@ import React from "react";
 
 import {Button} from "@material-ui/core";
 
-import {pinData1} from "./data";
+import {pinData1, pinData2} from "./data";
 
 export class LightBox extends React.Component {
 
