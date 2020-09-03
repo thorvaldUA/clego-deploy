@@ -9,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import {App} from "./app";
+
 const useStyles = makeStyles({
     root: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
@@ -92,20 +96,38 @@ export function Highlights (props){
         setValue(newValue);
     };
 
-    const tabStyle = {
-        textTransform: "capitalize"
-    }
+    const StyledTabs = withStyles({
+        flexContainer: {
 
-    const appBarStyle = {
-        flexGrow: 1
-    }
+            justifyContent: 'space-around',
+
+
+        }
+        })(Tabs);
+
+
+    const StyledTab = withStyles({
+        root: {
+
+            minWidth: "120px",
+            maxWidth: "180px",
+
+        },
+        wrapper: {
+            textTransform: "capitalize",
+
+            fontSize: '14px',
+
+            fontWeight: '700'
+        },
+    })(Tab);
 
 
 
     return  (
             <div className={props.className}>
 
-                <h1 style={{border: "0"}}>Highlights</h1>
+                <h1>Highlights</h1>
 
                 <AppBar position="static" color="default">
 
@@ -116,14 +138,16 @@ export function Highlights (props){
 
                         indicatorColor="primary"
                         textColor="primary"
-                        style={appBarStyle}
+                        classes={{ flexContainer: 'pattern' }}
                     >
 
-                        <Tab style={tabStyle}
+                        <StyledTab
                              label="Both"
                              {...a11yProps(0)} />
-                        <Tab style={tabStyle} label="Only missing" {...a11yProps(1)} />
-                        <Tab style={tabStyle} label="Only conflict" {...a11yProps(2)} />
+
+                        <StyledTab label="Only missing" {...a11yProps(1)} />
+
+                        <StyledTab label="Only conflict" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>

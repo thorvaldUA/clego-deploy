@@ -125,10 +125,6 @@ export function Concept (props) {
             seeClauseAction = null
         }
 
-
-
-
-
     return (<>
             <div className={'conceptWrap'}
                  onMouseEnter={mouseEnter}
@@ -156,7 +152,7 @@ export function Concept (props) {
 
                         }
 
-                        <span className={childrenNamesJoined.length > 0 ? "displayNone" : "tooltiptext"}>No connections</span>
+                        {/*<span className={childrenNamesJoined.length > 0 ? "displayNone" : "tooltiptext"}>No connections</span>*/}
 
                     </h3><br/>
 
@@ -196,6 +192,38 @@ export function Concept (props) {
 
                     </div>
                     : conceptPinned}
+
+                {/*<div className={'conceptActions'}>*/}
+
+                {/*            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={pinAction} fontSize="small">*/}
+                {/*                {pinIcon}*/}
+                {/*            </IconButton>*/}
+
+                {/*            <Menu*/}
+                {/*                id="simple-menu"*/}
+                {/*                anchorEl={anchorEl}*/}
+                {/*                keepMounted*/}
+                {/*                open={Boolean(anchorEl)}*/}
+                {/*                onClose={handleClose}*/}
+                {/*            >*/}
+                {/*                <MenuItem onClick={()=>*/}
+                {/*                    pinMenu("pinSingle")*/}
+                {/*                } >Only this</MenuItem>*/}
+
+                {/*                <MenuItem onClick={()=>*/}
+                {/*                    pinMenu("pinChildren")*/}
+                {/*                }>{"With " + childrenNames.length + " connections"}</MenuItem>*/}
+
+                {/*            </Menu>*/}
+
+                {/*            {seeClauseAction}*/}
+
+
+
+
+
+
+                {/*        </div>*/}
 
                 </div>
 
