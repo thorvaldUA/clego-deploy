@@ -26,13 +26,7 @@ export function Connections (props){
         props.goBack()
     }
 
-    function conceptAmount(totalAmount){
-
-        amount.push(totalAmount)
-
-
-    }
-
+    function conceptAmount(totalAmount){amount.push(totalAmount)}
 
         let conceptsL1 = props.concepts.filter(a => a.isChildOf.includes(props.conceptGroup));
 

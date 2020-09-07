@@ -4,7 +4,7 @@ import {Button} from "@material-ui/core";
 
 //1123
 
-import {pinData1, pinData2} from "./data";
+import {conceptsAOA, conceptsSHA} from "./data";
 
 export class LightBox extends React.Component {
 

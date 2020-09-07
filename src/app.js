@@ -1,11 +1,8 @@
 import React from "react";
 import "./main.css";
 
-import {pinData1, pinData2} from "./data";
-
+import {conceptsAOA, conceptsSHA} from "./data";
 import {DragDropContext} from 'react-beautiful-dnd';
-
-// import {Provider, defaultTheme, Text, Button, RadioGroup, Radio, TextField, Checkbox, MenuTrigger, ActionButton, Menu, Item, DialogTrigger, Dialog, Heading, Divider, Content, StatusLight} from './@adobe/react-spectrum';
 import {Preview} from "./preview";
 import {ExportOptions} from "./exportOptions";
 import {LightBox} from "./lightBox";
@@ -13,15 +10,6 @@ import {Deals} from "./deals";
 import {Connections} from "./connections";
 import {Highlights} from "./highlights";
 import {Pins} from "./pins";
-
-
-// import NotificationsIcon from './@spectrum-icons/workflow/NotificationsIcon';
-// import NotificationsNoneIcon from './@spectrum-icons/workflow/NotificationsNoneIcon';
-
-
-
-
-
 
 export class App extends React.Component {
 
@@ -32,10 +20,9 @@ export class App extends React.Component {
             currentScreen: 'main',
             history:['most-common'],
 
-            concepts: pinData1,
+            concepts: conceptsAOA,
             pins: [],
             toExport: [],
-            // clauses:clauses1,
 
             conceptGroup: 'most-common',
 
@@ -56,7 +43,7 @@ export class App extends React.Component {
         this.openModal = this.openModal.bind(this)
 
         this.switchScreens = this.switchScreens.bind(this)
-        this.switchDeals = this.switchDeals.bind(this)
+        this.switchDocs = this.switchDocs.bind(this)
 
         this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -135,7 +122,7 @@ export class App extends React.Component {
             conceptGroup: prevStep,
             history: newHistory
         }))
-            console.log(this.state)
+
         } else {}
 
     }
@@ -206,18 +193,33 @@ export class App extends React.Component {
         }) : this.setState({currentScreen:'main'})
     }
 
-    switchDeals(){
-        let concepts = this.state.concepts
-        if (concepts===pinData2){
-            this.setState(prevState=>(
-                 {concepts:pinData1}
-                 ));
+    switchDocs(doc1, doc2) {
 
-        }else{
-                this.setState(prevState=>(
-                    {concepts:pinData2}
-                ));
-        }}
+        let newConcepts = this.state.concepts
+
+        let AOA = conceptsAOA
+        let SHA = conceptsSHA
+
+        if (doc1 && doc2) {
+            newConcepts = AOA.concat(SHA)
+
+        }
+        else if (doc1 && !doc2) {
+            newConcepts = AOA
+
+        }
+        else if (!doc1 && doc2) {
+            newConcepts = SHA
+        }
+        else{
+            newConcepts = []
+        }
+
+        this.setState({
+            concepts: newConcepts
+        })
+    }
+
 
     clearPreview(){
         this.setState(prevState=>({toExport:[], itemOrder: []}))
@@ -308,7 +310,9 @@ export class App extends React.Component {
                     clauses={this.state.clauses}
                 />
                 <Deals className={'pane deals'}
-                    switchDeals={this.switchDeals}
+
+                       switchDocs={this.switchDocs}
+
                 />
 
 

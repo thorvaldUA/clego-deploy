@@ -25,8 +25,6 @@ const useStyles = makeStyles({
 
 export function Highlights (props){
 
-    const classes = useStyles();
-
     function seeConnections(i) {
         props.seeConnections(i)
     }
@@ -95,15 +93,6 @@ export function Highlights (props){
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
-    const StyledTabs = withStyles({
-        flexContainer: {
-
-            justifyContent: 'space-around',
-
-
-        }
-        })(Tabs);
 
 
     const StyledTab = withStyles({

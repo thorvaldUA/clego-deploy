@@ -26,10 +26,6 @@ export function Concept (props) {
             color: "black"
     }
 
-        // console.log(childrenObj.length)
-
-
-
         if (props.currentScreen === 'main' && props.isSelected) {
             childrenAction = props.pinChildren
             pinSingle = "Unpin me"

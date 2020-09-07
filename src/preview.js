@@ -1,6 +1,6 @@
 import React from "react";
 
-import {pinData1, pinData2} from "./data";
+import {conceptsAOA, conceptsSHA} from "./data";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {Concept} from "./concept";
 
@@ -28,12 +28,12 @@ export class Preview extends React.Component {
 
 
         let clausesToExport = clausesIds.map(name =>
-            pinData1.find(x => x.id === name))
+            conceptsAOA.find(x => x.id === name))
 
-        // --- Find indexes of exported pins in pinData1 --- //
+        // --- Find indexes of exported pins in conceptsAOA --- //
 
         // let clausesIds = this.props.itemOrder.map(a => a.id)
-        // let clauses = clausesIds.map(name => pinData1.findIndex(x => x.id === name))
+        // let clauses = clausesIds.map(name => conceptsAOA.findIndex(x => x.id === name))
 
         return (<>
 
