@@ -8,13 +8,10 @@ html * {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 24px;
   line-height: 1.25;
   font-family: "IBM Plex Serif", serif;
-  font-weight: 600;
-  margin-top: 1.15em;
-  margin-bottom: 0.45em;
-  text-align: center;
+  font-weight: 700;
 }
 
 h1 > small {
@@ -59,6 +56,10 @@ mark:hover {
 /*Tooltip Test*/
 mark {
   font-style: italic;
+}
+
+hr {
+  border-top: 1px solid whitesmoke;
 }
 
 /*# sourceMappingURL=var.css.map */

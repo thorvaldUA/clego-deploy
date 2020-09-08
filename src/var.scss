@@ -15,16 +15,12 @@ html * {
 
 }
 h1{
-  font-size: 36px;
+  font-size: 24px;
   line-height: 1.25;
 
   font-family: $secondary-font;
-  font-weight: 600;
+  font-weight: 700;
 
-  margin-top: 1.15em;
-  margin-bottom: .45em;
-  text-align: center;
-  //border-bottom: 1px solid black;
 }
 
 
@@ -80,4 +76,9 @@ mark:hover{
 
 mark{
   font-style: italic;
+}
+
+hr{
+  border-top: 1px solid rgb(245,245,245);
+
 }

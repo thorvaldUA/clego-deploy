@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import Paper from "@material-ui/core/Paper";
 
 
 
@@ -42,12 +43,20 @@ export function Deals(props){
             <>
 
                 <div className={props.className}>
+
+                    <Paper>
+
+                    <div className={'paneHeader'}>
                     <h1>Deals</h1>
+                    </div>
+
+                    </Paper>
+
                     <br/>
 
                     <FormControl component="fieldset">
-                    <FormLabel component="legend">Documents to view</FormLabel>
-                        <br/>
+
+
                     <FormGroup>
                         <FormControlLabel
                             control={<Switch checked={state.aoa} onChange={handleChange} name="aoa" />}

@@ -3,13 +3,20 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import TextField from "@material-ui/core/TextField";
 import {Button, Checkbox} from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
 
 export class ExportOptions extends React.Component {
 
     render() {
         return (
             <div className={this.props.className}>
+
+                <Paper>
+                    <div className={'paneHeader'}>
                 <h1>Export Options</h1>
+
+                    </div>
+                </Paper>
 
                 <RadioGroup defaultValue="pdf">
                     <Radio value="pdf">Send as PDF</Radio>

@@ -3,6 +3,8 @@ import React from "react";
 import {conceptsAOA, conceptsSHA} from "./data";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {Concept} from "./concept";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
 export class Preview extends React.Component {
 
@@ -46,9 +48,17 @@ export class Preview extends React.Component {
                             {...provided.droppableProps}
                         >
 
+                            <Paper>
 
-                            <h1>Preview</h1><br/>
-                            <button onClick={() => this.clearPreview()}>Clear preview</button>
+                                <div className={'paneHeader'}>
+
+
+                                    <h1>Preview</h1>
+                                    <Button onClick={() => this.clearPreview()}>Clear preview</Button>
+
+                            </div>
+
+                            </Paper>
                             <div className="preview-container">
 
                                 <a href="#clausesPreview"
@@ -92,8 +102,6 @@ export class Preview extends React.Component {
 
                                                             isChildOf={data.isChildOf}
                                                             concepts={this.props.concepts}
-                                                            hasParent={false}
-
 
                                                         />
                                                     </div>

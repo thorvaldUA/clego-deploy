@@ -51,6 +51,8 @@ export class App extends React.Component {
         this.exportChildren = this.exportChildren.bind(this)
 
         this.clearPreview = this.clearPreview.bind(this)
+
+        this.exportAll = this.exportAll.bind(this)
     }
 
     openModal(id, name) {
@@ -179,11 +181,20 @@ export class App extends React.Component {
         } else {
             toExport.splice(pinIndex, 1)
         }
+  }
 
+  exportAll(){
 
+      let toExport = this.state.toExport.slice()
 
+      toExport = this.state.pins
 
-    }
+      this.setState({
+          toExport: toExport,
+          itemOrder: toExport
+      })
+
+  }
 
     switchScreens(){
 
@@ -429,6 +440,10 @@ export class App extends React.Component {
                   currentScreen={this.state.currentScreen}
                   toExport={this.state.toExport}
                   seeConnections={this.seeConnections}
+
+                  exportAll={this.exportAll}
+
+
 
             />
             <Preview

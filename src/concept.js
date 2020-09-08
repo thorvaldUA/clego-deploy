@@ -5,6 +5,7 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 
 import IconButton from '@material-ui/core/IconButton';
+import ChatIcon from '@material-ui/icons/Chat';
 
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
@@ -13,6 +14,7 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import {Button, Menu, MenuItem} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import {Comment} from "@material-ui/icons";
 
 export function Concept (props) {
         let pinSingle, childrenAction, pinChildren, status, pinIcon;
@@ -98,7 +100,13 @@ export function Concept (props) {
     let conceptPinned
 
     if(props.isSelected)
-        conceptPinned = <div className={"conceptActions"}><IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
+        conceptPinned =
+
+            <div className={props.name.length > 25 ?
+                'conceptActionsLong' : "conceptActionsShort"
+            }>
+
+            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
 
     let pinAction
 
@@ -120,6 +128,11 @@ export function Concept (props) {
         }else{
             seeClauseAction = null
         }
+
+    let commentIcon
+    commentIcon = <IconButton onClick={() => props.openModal(props.id)} fontSize="small">
+        <ChatIcon />
+    </IconButton>
 
     return (<>
             <div className={'conceptWrap'}
@@ -148,15 +161,15 @@ export function Concept (props) {
 
                         }
 
-                        {/*<span className={childrenNamesJoined.length > 0 ? "displayNone" : "tooltiptext"}>No connections</span>*/}
-
                     </h3><br/>
 
             </div>
 
                 {isMouseInside ?
 
-                    <div className={'conceptActions'}>
+                    <div className={props.name.length > 27 ?
+                        'conceptActionsLong' : "conceptActionsShort"
+                    }>
 
                         <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={pinAction} fontSize="small">
                             {pinIcon}
@@ -180,6 +193,7 @@ export function Concept (props) {
                         </Menu>
 
                         {seeClauseAction}
+                        {/*{commentIcon}*/}
 
 
 
@@ -188,38 +202,6 @@ export function Concept (props) {
 
                     </div>
                     : conceptPinned}
-
-                {/*<div className={'conceptActions'}>*/}
-
-                {/*            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={pinAction} fontSize="small">*/}
-                {/*                {pinIcon}*/}
-                {/*            </IconButton>*/}
-
-                {/*            <Menu*/}
-                {/*                id="simple-menu"*/}
-                {/*                anchorEl={anchorEl}*/}
-                {/*                keepMounted*/}
-                {/*                open={Boolean(anchorEl)}*/}
-                {/*                onClose={handleClose}*/}
-                {/*            >*/}
-                {/*                <MenuItem onClick={()=>*/}
-                {/*                    pinMenu("pinSingle")*/}
-                {/*                } >Only this</MenuItem>*/}
-
-                {/*                <MenuItem onClick={()=>*/}
-                {/*                    pinMenu("pinChildren")*/}
-                {/*                }>{"With " + childrenNames.length + " connections"}</MenuItem>*/}
-
-                {/*            </Menu>*/}
-
-                {/*            {seeClauseAction}*/}
-
-
-
-
-
-
-                {/*        </div>*/}
 
                 </div>
 

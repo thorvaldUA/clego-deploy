@@ -1,27 +1,14 @@
 import React from "react";
 import {Concept} from "./concept";
 
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import {App} from "./app";
-
-const useStyles = makeStyles({
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
-
-    },
-    label: {
-        textTransform: 'capitalize',
-    },
-});
+import Paper from "@material-ui/core/Paper";
 
 export function Highlights (props){
 
@@ -76,7 +63,6 @@ export function Highlights (props){
                                 }
 
                                 comment={data.comments}
-                                hasParent={false}
 
                             />
                         </div>
@@ -93,6 +79,10 @@ export function Highlights (props){
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const appBarStyle = {
+        background: 'ffffff'
+    }
 
 
     const StyledTab = withStyles({
@@ -116,9 +106,19 @@ export function Highlights (props){
     return  (
             <div className={props.className}>
 
+                <Paper>
+
+                <div className={"paneHeader"}>
+
                 <h1>Highlights</h1>
 
-                <AppBar position="static" color="default">
+                </div>
+
+
+
+                <AppBar position="static"
+                    color='inherit'
+                        elevation={0}>
 
                     <Tabs
                         value={value}
@@ -127,7 +127,7 @@ export function Highlights (props){
 
                         indicatorColor="primary"
                         textColor="primary"
-                        classes={{ flexContainer: 'pattern' }}
+                        // classes={{ flexContainer: 'pattern' }}
                     >
 
                         <StyledTab
@@ -139,6 +139,8 @@ export function Highlights (props){
                         <StyledTab label="Only conflict" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
+
+                </Paper>
                 <TabPanel value={value} index={0}>
                     {renderHighlights("missing","conflict")}
                 </TabPanel>
