@@ -40,7 +40,7 @@ export function Connections (props){
         return (
             <div className={props.className}>
 
-                <Paper>
+                <Paper square variant={"outlined"}>
 
                 <div className={"paneHeader"}>
 
@@ -48,8 +48,10 @@ export function Connections (props){
 
                     <div className={"conceptGroup"}>
 
-                        {props.prevStep ? <a onClick={() => goBack()}>Back to {props.prevStep}</a> : null}
-                        <h2>{conceptGroupCaps}</h2>
+                        {props.prevStep ? <a className={'goBack'} onClick={() => goBack()}>Back to {props.prevStep}</a> :
+                         null
+                        }
+                        <h3>{conceptGroupCaps}</h3>
 
                     </div>
             </div>

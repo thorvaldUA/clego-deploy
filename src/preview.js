@@ -48,7 +48,7 @@ export class Preview extends React.Component {
                             {...provided.droppableProps}
                         >
 
-                            <Paper>
+                            <Paper square variant={"outlined"}>
 
                                 <div className={'paneHeader'}>
 

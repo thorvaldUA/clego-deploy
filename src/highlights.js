@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
+import {Button} from "@material-ui/core";
 
 export function Highlights (props){
 
@@ -106,11 +107,12 @@ export function Highlights (props){
     return  (
             <div className={props.className}>
 
-                <Paper>
+                <Paper square variant={"outlined"}>
 
                 <div className={"paneHeader"}>
 
                 <h1>Highlights</h1>
+                    <Button variant='contained' onClick={props.exportAll}>Pin all</Button>
 
                 </div>
 

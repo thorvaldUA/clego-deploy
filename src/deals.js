@@ -44,10 +44,11 @@ export function Deals(props){
 
                 <div className={props.className}>
 
-                    <Paper>
+                    <Paper square variant={"outlined"}>
 
                     <div className={'paneHeader'}>
                     <h1>Deals</h1>
+                        <Button variant='contained' onClick={props.exportAll}>Upload docs</Button>
                     </div>
 
                     </Paper>
@@ -68,7 +69,7 @@ export function Deals(props){
                             label="Shareholders agreeement"
                         />
                     </FormGroup>
-                    <FormHelperText>Be careful</FormHelperText>
+
                 </FormControl>
 
 

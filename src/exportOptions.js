@@ -11,7 +11,7 @@ export class ExportOptions extends React.Component {
         return (
             <div className={this.props.className}>
 
-                <Paper>
+                <Paper square variant={"outlined"}>
                     <div className={'paneHeader'}>
                 <h1>Export Options</h1>
 

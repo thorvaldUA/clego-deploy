@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ChatIcon from '@material-ui/icons/Chat';
 
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import FormatIndentIncreaseIcon from '@material-ui/icons/FormatIndentIncrease';
+import ReportIcon from '@material-ui/icons/Report';
 
 
 
@@ -134,14 +136,48 @@ export function Concept (props) {
         <ChatIcon />
     </IconButton>
 
+    let typeIcon
+    if (props.type === "conflict") {
+        typeIcon = <ReportIcon
+            style={{ color: 'white' }}
+        />
+    }else{
+        typeIcon = <FormatIndentIncreaseIcon
+            style={{ color: 'white' }}
+        />
+    }
+
+
+
+
     return (<>
             <div className={'conceptWrap'}
                  onMouseEnter={mouseEnter}
                  onMouseLeave={mouseLeave}
                  onLoad={props.conceptAmount}>
 
+                {props.type === 'basic' ? null :
+
+                    <div className=
+                             {props.type === 'conflict'?
+                                 "conceptIconWrap" + " " + "wrapRed" :
+                                 "conceptIconWrap"
+                             }
+
+
+                         >
+                        {typeIcon}
+                    </div>
+                }
+
+
             <div
-                className={'concept' + " " + props.type}
+                className=
+                    {props.type === 'basic'?
+                    'concept' + " " + props.type :
+                    'concept' + " " + props.type + " " + "conceptPaddingLeft"
+                    }
+
 
             >
                     <h3
@@ -150,7 +186,6 @@ export function Concept (props) {
                             () => props.seeConnections() : null
                         }
                     >
-
 
                         {props.name}
 

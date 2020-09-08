@@ -31,7 +31,7 @@ export function Pins (props){
             return (
                 <div className={props.className}>
 
-                    <Paper>
+                    <Paper square variant={"outlined"}>
 
                     <div className={'paneHeader'}>
 
@@ -89,7 +89,7 @@ export function Pins (props){
                 <div
                     className={props.className}
                 >
-                    <Paper>
+                    <Paper square variant={"outlined"}>
 
                     <div className={'paneHeader'}>
 

@@ -8,7 +8,7 @@ html * {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 32px;
   line-height: 1.25;
   font-family: "IBM Plex Serif", serif;
   font-weight: 700;
@@ -34,8 +34,9 @@ h3 {
 }
 
 h4 {
-  font-size: 14px;
-  color: black;
+  font-size: 18px;
+  color: gray;
+  font-weight: 700;
   font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -56,6 +57,15 @@ mark:hover {
 /*Tooltip Test*/
 mark {
   font-style: italic;
+}
+
+a {
+  color: blue;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #ae00ff;
 }
 
 hr {

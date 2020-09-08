@@ -15,7 +15,7 @@ html * {
 
 }
 h1{
-  font-size: 24px;
+  font-size: 32px;
   line-height: 1.25;
 
   font-family: $secondary-font;
@@ -45,8 +45,9 @@ h3{
 }
 
 h4{
-  font-size: 14px;
-  color: black;
+  font-size: 18px;
+  color: gray;
+  font-weight: 700;
   font-family: $primary-font;
 
 }
@@ -77,6 +78,17 @@ mark:hover{
 mark{
   font-style: italic;
 }
+
+
+a{
+  color: $primary-color;
+  cursor: pointer;
+
+}
+a:hover{
+  color: hsl(281, 100%, 50%)
+}
+
 
 hr{
   border-top: 1px solid rgb(245,245,245);
