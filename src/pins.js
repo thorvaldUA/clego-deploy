@@ -2,6 +2,8 @@ import React from "react";
 import {Button} from "@material-ui/core";
 import {Concept} from "./concept";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 
 export function Pins (props){
@@ -36,7 +38,10 @@ export function Pins (props){
                     <div className={'paneHeader'}>
 
                     <h1>Pins</h1>
-                    <Button variant='contained' onClick={() => props.switchScreens('export')}>Export pins</Button>
+
+                    <Button variant='contained' style={{
+                        background:'blue', color:'white'
+                    }} onClick={() => props.switchScreens('export')}>Export pins</Button>
 
                     </div>
 
@@ -91,20 +96,28 @@ export function Pins (props){
                 >
                     <Paper square variant={"outlined"}>
 
-                    <div className={'paneHeader'}>
+
 
 
 
 
                         <div className={'paneHeader'}>
 
-                        <a onClick={() => props.switchScreens('main')}>Back to connections</a>
-                        <h1>Pins</h1>
-                        <Button variant='contained' onClick={props.exportAll}>Export all</Button>
+                            <IconButton aria-controls="simple-menu" aria-haspopup="true"
+                                                                  onClick={() => props.switchScreens('main')}
+                                                                  fontSize="small"
+                                                                  className={'goBack'}>
+                                <ArrowBackIcon />
+                            </IconButton>
+
+                        <h1 className={'panePaddingLeft'}>Pins</h1>
+
+
+                            <Button variant='contained' onClick={props.exportAll}>Export all</Button>
 
                         </div>
 
-                    </div>
+
 
                     </Paper>
 

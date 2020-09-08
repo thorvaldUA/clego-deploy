@@ -48,7 +48,7 @@ export function Deals(props){
 
                     <div className={'paneHeader'}>
                     <h1>Deals</h1>
-                        <Button variant='contained' onClick={props.exportAll}>Upload docs</Button>
+
                     </div>
 
                     </Paper>
@@ -60,27 +60,25 @@ export function Deals(props){
 
                     <FormGroup>
                         <FormControlLabel
-                            control={<Switch checked={state.aoa} onChange={handleChange} name="aoa" />}
+                            control={<Switch checked={state.aoa} onChange={handleChange} name="aoa"
+                                             color="primary"/>}
                             label="Articles of association"
+
+
                         />
                         <br/>
                         <FormControlLabel
-                            control={<Switch checked={state.sha} onChange={handleChange} name="sha" />}
+                            control={<Switch checked={state.sha} onChange={handleChange} name="sha"
+                                             color="primary"/>}
                             label="Shareholders agreeement"
+                            color="secondary"
+
                         />
                     </FormGroup>
 
                 </FormControl>
 
 
-                    {/*<Button*/}
-
-                    {/*    onClick={() => props.switchDeals()}>*/}
-                    {/*    <DescriptionIcon/>*/}
-                    {/*    Switch deals*/}
-
-
-                    {/*</Button>*/}
 
                 </div>
 

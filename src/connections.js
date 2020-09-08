@@ -120,7 +120,7 @@ export function Connections (props){
 
                                 <div className={'line'}
                                      style={
-                                         {height: amount[myIndex] * 62}
+                                         {height: amount[myIndex] * 68}
                                      }
                                 ></div>
 
@@ -170,7 +170,7 @@ export function Connections (props){
 
                                             <div className={'lineLvl2'}
                                                  style={
-                                                     {height: conceptsL3.length * 56}
+                                                     {height: conceptsL3.length * 68}
                                                  }
                                             ></div>
 

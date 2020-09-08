@@ -1,15 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import TextField from "@material-ui/core/TextField";
-import {Button, Checkbox} from "@material-ui/core";
+import {Button, Checkbox, Switch} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import {createMuiTheme} from "@material-ui/core/styles";
 
-export class ExportOptions extends React.Component {
+export function ExportOptions(props){
 
-    render() {
-        return (
-            <div className={this.props.className}>
+    const [value, setValue] = React.useState('pdf');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    return (
+            <div className={props.className}>
 
                 <Paper square variant={"outlined"}>
                     <div className={'paneHeader'}>
@@ -18,34 +28,43 @@ export class ExportOptions extends React.Component {
                     </div>
                 </Paper>
 
-                <RadioGroup defaultValue="pdf">
-                    <Radio value="pdf">Send as PDF</Radio>
-                    <TextField label="Email"/>
+                <div className={'exportOptionsContainer'}>
 
-                    <Radio value="invite">Send an invite</Radio>
-                    <TextField label="Email"/>
-                    <Checkbox>Save to desktop</Checkbox>
+                <FormControl component="fieldset">
 
-                    <Button type='submit' isDisabled='yes'>Submit</Button>
+                    <RadioGroup aria-label="sendAs" name="sendAs1" value={value} onChange={handleChange}>
+                        <FormControlLabel value="pdf" control={<Radio color="primary" />} label="Send as PDF" />
+                        <TextField color="primary" className={'textFieldExport'} label="Email"/>
+                        <br/>
+                        <FormControlLabel value="invite" control={<Radio color="primary" />} label="Send an invite" />
+                        <TextField color="primary" className={'textFieldExport'} label="Clego user"/>
+                        <br/>
+
+                    </RadioGroup>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                // checked={state.checkedB}
+                                // onChange={handleChange}
+                                name="checkedB"
+                                color="primary"
+                            />
+                        }
+                        label="Save copy to desktop"
+                    />
+                    <Button variant='contained' style={{background:"blue",color:"white"}}>Send the doc</Button>
+                </FormControl>
+
+                </div>
 
 
-                </RadioGroup>
 
-                <form>
 
-                    <input type="radio" id="pdf" name="exportOptions" value="pdf" defaultChecked/>
-                    <label htmlFor="pdf">Send as PDF</label><br/>
 
-                    <input type="text" id="email" name="exportOptions"/><br/>
 
-                    <input type="radio" id="invite" name="exportOptions" value="invite"/>
-                    <label htmlFor="invite">Send invite</label><br/>
-                    <input type="checkbox" id="desktop" name="exportOptions" value="desktop"/>
-                    <label htmlFor="other">Save copy to desktop</label><br/>
-                    <input type="submit" value="Submit"/>
-                </form>
+
             </div>
         )
-    }
+
 
 }

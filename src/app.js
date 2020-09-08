@@ -10,6 +10,10 @@ import {Deals} from "./deals";
 import {Connections} from "./connections";
 import {Highlights} from "./highlights";
 import {Pins} from "./pins";
+import {Concept} from "./concept";
+
+import { createMuiTheme } from '@material-ui/core/styles';
+
 
 export class App extends React.Component {
 
@@ -53,6 +57,7 @@ export class App extends React.Component {
         this.clearPreview = this.clearPreview.bind(this)
 
         this.exportAll = this.exportAll.bind(this)
+        this.pinAllHighlights = this.pinAllHighlights.bind(this)
     }
 
     openModal(id, name) {
@@ -98,7 +103,19 @@ export class App extends React.Component {
         }))
     }
 
+    pinAllHighlights(){
 
+        let pins = this.state.pins.slice();
+
+        let filtered = this.state.concepts.filter(concept => concept.type !== "basic")
+
+        pins = filtered
+
+        this.setState(prevState => ({
+            pins: pins
+        }))
+
+    }
 
     seeConnections(i){
         let myName = i.name.replace(/\s+/g, '-').toLowerCase();
@@ -286,6 +303,10 @@ export class App extends React.Component {
 
     render() {
 
+
+
+
+
         let prevStep
         if (this.state.history.length > 1) {
             prevStep = this.state.history[this.state.history.length - 2]
@@ -363,6 +384,8 @@ export class App extends React.Component {
 
                             seeConnections={this.seeConnections}
                             currentScreen={this.state.currentScreen}
+
+                            pinAllHighlights={this.pinAllHighlights}
 
                 />
 

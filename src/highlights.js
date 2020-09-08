@@ -112,7 +112,7 @@ export function Highlights (props){
                 <div className={"paneHeader"}>
 
                 <h1>Highlights</h1>
-                    <Button variant='contained' onClick={props.exportAll}>Pin all</Button>
+                    <Button variant='contained' onClick={props.pinAllHighlights}>Pin all</Button>
 
                 </div>
 
