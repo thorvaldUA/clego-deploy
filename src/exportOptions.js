@@ -52,7 +52,7 @@ export function ExportOptions(props){
                         }
                         label="Save copy to desktop"
                     />
-                    <Button variant='contained' style={{background:"blue",color:"white"}}>Send the doc</Button>
+                    <Button variant='contained' color='primary'>Send the doc</Button>
                 </FormControl>
 
                 </div>

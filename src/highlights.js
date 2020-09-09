@@ -11,6 +11,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import {Button} from "@material-ui/core";
 
+
+
+
+
 export function Highlights (props){
 
     function seeConnections(i) {
@@ -81,11 +85,6 @@ export function Highlights (props){
         setValue(newValue);
     };
 
-    const appBarStyle = {
-        background: 'ffffff'
-    }
-
-
     const StyledTab = withStyles({
         root: {
 
@@ -102,8 +101,6 @@ export function Highlights (props){
         },
     })(Tab);
 
-
-
     return  (
             <div className={props.className}>
 
@@ -112,7 +109,9 @@ export function Highlights (props){
                 <div className={"paneHeader"}>
 
                 <h1>Highlights</h1>
-                    <Button variant='contained' onClick={props.pinAllHighlights}>Pin all</Button>
+                    <Button variant='contained' color='primary' onClick={props.pinAllHighlights}
+
+                    >Pin all</Button>
 
                 </div>
 

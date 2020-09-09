@@ -12,7 +12,47 @@ import {Highlights} from "./highlights";
 import {Pins} from "./pins";
 import {Concept} from "./concept";
 
-import { createMuiTheme } from '@material-ui/core/styles';
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+import { grey, deepPurple, amber } from '@material-ui/core/colors';
+
+
+const theme = createMuiTheme({
+
+    palette: {
+
+        primary: {
+
+            main: "#76ff03",
+
+            '&:hover': {
+                background: "#f00",
+            }
+
+        },
+
+        secondary: {
+
+            main: amber[500],
+
+            contrastText: deepPurple[900],
+
+        },
+
+    },
+
+    button: {
+        background: "#f1f1f1",
+        '&:hover': {
+            background: "#f00",
+        },
+    },
+
+});
+
+
+
 
 
 export class App extends React.Component {
@@ -307,6 +347,10 @@ export class App extends React.Component {
 
 
 
+
+
+
+
         let prevStep
         if (this.state.history.length > 1) {
             prevStep = this.state.history[this.state.history.length - 2]
@@ -316,7 +360,12 @@ export class App extends React.Component {
         {prevStep = false}
 
         if (this.state.currentScreen === 'main')
+
+
+
             return(
+
+                <ThemeProvider theme={theme}>
 
 
 
@@ -416,10 +465,14 @@ export class App extends React.Component {
 
                 </DragDropContext>
 
+                </ThemeProvider>
+
 
 
                     );
             return(
+
+                <ThemeProvider theme={theme}>
 
 
 
@@ -503,6 +556,8 @@ export class App extends React.Component {
             </DragDropContext>
 
             </div>
+
+                </ThemeProvider>
 
 
 

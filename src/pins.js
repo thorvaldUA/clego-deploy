@@ -39,9 +39,7 @@ export function Pins (props){
 
                     <h1>Pins</h1>
 
-                    <Button variant='contained' style={{
-                        background:'blue', color:'white'
-                    }} onClick={() => props.switchScreens('export')}>Export pins</Button>
+                    <Button variant='contained' color='primary' onClick={() => props.switchScreens('export')}>Export pins</Button>
 
                     </div>
 
@@ -113,7 +111,7 @@ export function Pins (props){
                         <h1 className={'panePaddingLeft'}>Pins</h1>
 
 
-                            <Button variant='contained' onClick={props.exportAll}>Export all</Button>
+                            <Button variant='contained' color='primary' onClick={props.exportAll}>Export all</Button>
 
                         </div>
 

@@ -54,7 +54,7 @@ export class Preview extends React.Component {
 
 
                                     <h1>Preview</h1>
-                                    <Button onClick={() => this.clearPreview()}>Clear preview</Button>
+                                    <Button color='primary' onClick={() => this.clearPreview()}>Clear preview</Button>
 
                             </div>
 
