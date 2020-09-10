@@ -10,7 +10,6 @@ import {Deals} from "./deals";
 import {Connections} from "./connections";
 import {Highlights} from "./highlights";
 import {Pins} from "./pins";
-import {Concept} from "./concept";
 
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -24,7 +23,7 @@ const theme = createMuiTheme({
 
         primary: {
 
-            main: "#76ff03",
+            main: '#000000',
 
             '&:hover': {
                 background: "#f00",
