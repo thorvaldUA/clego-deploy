@@ -12,8 +12,8 @@ html * {
 
 .lightBox-contents p {
   font-family: $secondary-font!important;
-
 }
+
 h1{
   font-size: 32px;
   line-height: 1.25;
@@ -46,18 +46,25 @@ h3{
 
 h4{
   font-size: 18px;
-  color: gray;
+  color: black;
   font-weight: 700;
-  font-family: $primary-font;
+  font-family: $secondary-font;
 
 }
 
+h4>small{
+  font-size: 18px;
+  font-weight: 300;
+  font-family: $primary-font
+}
 
 h5{
   font-size: 16px;
   font-weight: 500;
-  $secondary-font: globals.$secondary-font;
+
 }
+
+
 
 
 

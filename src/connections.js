@@ -8,8 +8,6 @@ export function Connections (props){
 
     let amount = []
 
-
-
     function conceptClicked(id) {
         props.conceptClicked(id)
     }
@@ -54,8 +52,8 @@ export function Connections (props){
                         <h3>{conceptGroupCaps}</h3>
 
                     </div>
-            </div>
-            </Paper>
+                </div>
+                </Paper>
                 
 
 

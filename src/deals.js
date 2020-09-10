@@ -53,7 +53,8 @@ export function Deals(props){
 
                     </Paper>
 
-                    <br/>
+                    <div className={'deals-container'}>
+
 
                     <FormControl component="fieldset">
 
@@ -77,6 +78,8 @@ export function Deals(props){
                     </FormGroup>
 
                 </FormControl>
+
+                    </div>
 
 
 

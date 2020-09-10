@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 
 import ClearIcon from '@material-ui/icons/Clear';
 
+
+
 export function Preview (props) {
 
     function seeConnections(i) {
@@ -36,6 +38,7 @@ export function Preview (props) {
 
         // let clausesIds = props.itemOrder.map(a => a.id)
         // let clauses = clausesIds.map(name => conceptsAOA.findIndex(x => x.id === name))
+
 
         return (<>
 
@@ -129,18 +132,24 @@ export function Preview (props) {
 
                             <div className="preview-container clauses">
 
-                                <a href="#pinsPreview"
-                                   id={'clausesPreview'}
-                                   >
-                                    <h2
-                                    >Clauses</h2>
+                                <a href="#pinsPreview" id={'clausesPreview'}>
+                                    <h2>Clauses</h2>
                                 </a>
+
+
+
+
 
                                 {clausesToExport.map(data => {
                                         return (
-                                            <>
-                                            <h3>{data.name}</h3><br/>
-                                                <small>{data.document}</small><br/>
+                                            <div className={'clausesBlock'}
+                                                 href={"#" + data.id}
+
+                                                     >
+
+                                            <h3>{data.name}</h3>
+                                            <div className={'doc'}>{data.document}</div>
+
                                             <div dangerouslySetInnerHTML={
                                                 {
                                                     __html: data.text
@@ -149,7 +158,7 @@ export function Preview (props) {
                                                  key={data.id}
                                             ></div>
 
-                                            </>
+                                            </div>
                                         )
                                     }
                                 )}
