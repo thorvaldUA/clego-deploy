@@ -90,7 +90,9 @@ export function Preview (props) {
                                                     {...provided.dragHandleProps}
                                                 >
 
-                                                    <div key={data.id}>
+                                                    <a key={data.id}
+                                                        href={"#" + data.id}
+                                                    >
 
 
                                                         <Concept
@@ -116,7 +118,7 @@ export function Preview (props) {
                                                             concepts={props.concepts}
 
                                                         />
-                                                    </div>
+                                                    </a>
 
                                                 </div>
                                             )}
@@ -143,7 +145,8 @@ export function Preview (props) {
                                 {clausesToExport.map(data => {
                                         return (
                                             <div className={'clausesBlock'}
-                                                 href={"#" + data.id}
+                                                 // href={"#" + data.id}
+                                                id={data.id}
 
                                                      >
 
