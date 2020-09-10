@@ -1,53 +1,52 @@
 import React from "react";
-
 import {Button} from "@material-ui/core";
-
-//1123
-
 import {conceptsAOA, conceptsSHA} from "./data";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
 
-export class LightBox extends React.Component {
+export function LightBox (props) {
 
-    constructor(props) {
-        super(props)
-        this.state = {}
+    function closeModal() {
+        props.closeModal()
     }
 
-    closeModal() {
-        this.props.closeModal()
-    }
+    const iClauseObj = props.concepts.find(a => a.id === props.clauseId)
 
-    render() {
-        const iClause = this.props.concepts.filter(a => a.id === this.props.clauseId)
-
+    if(iClauseObj){
         return (
-            <div
-                className={this.props.showModal ? 'lightBox-visible' : 'lightBox-hidden'}
-            >
+            <div className={props.showModal ? 'lightBox-visible' : 'lightBox-hidden'}>
 
-                <br/>
-                <div className={'lightBox-contents'}
+                <div className={'lightBox-contents'}>
 
-                >
-                    {iClause.map((data) => {
-                        return (
+                    <div className={'lightBox-header'}>
+                        <IconButton aria-controls="simple-menu" aria-haspopup="true"
+                                    onClick={(e) => {closeModal(e)}}
+                                    fontSize="small"
+                                    className={'goBack'}
+                        >
+                            <ArrowBackIcon />
+                        </IconButton>
 
-                            <div key={data.id}>
-                                <h1>{data.name} <br/><small>{data.document}</small></h1>
-                                <div
-                                    dangerouslySetInnerHTML={
-                                        {__html: data.text}}
-                                >
-                                </div>
-                            </div>
-                        );
-                    })}
+                        <h1 className={'panePaddingLeft'}>{iClauseObj.name} <br/><small>{iClauseObj.document}</small></h1>
+
+                    </div>
+
+
+                    <div
+                        dangerouslySetInnerHTML={
+                            {__html: iClauseObj.text}}
+                    >
+                    </div>
 
                     <Button
                         color="primary"
-                        variant="contained"
-                        onClick={(e) => {this.closeModal(e)}}>
-                        Close me
+                        variant="outlined"
+                        onClick={(e) => {closeModal(e)}}
+
+                    >
+
+                        Back to {props.currentScreen}
+
                     </Button>
                     <br/>
 
@@ -56,5 +55,6 @@ export class LightBox extends React.Component {
             </div>
 
         )
-    }
+    }else{return(null)}
+
 }

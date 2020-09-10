@@ -112,7 +112,7 @@ table {
     display: flex;
     align-items: center;
     top:2px;
-    left: 0px;
+    left: 1px;
     min-height: calc(100% - 4px);
     padding-left: 8px;
     padding-right: 8px;
@@ -277,21 +277,41 @@ table {
 }
 
 .preview-container{
-    /*width: 100%;*/
+    padding: 0 20px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: flex-start;
-    align-content: flex-start;
+    align-items: flex-start;
+
 }
 
-.a-preview{
+.preview-container h2{
+    display: inline-block;
     font-size: 22px;
     color: black;
-    font-family: 'Open Sans', sans-serif;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+
+.preview-container .clauses h3{
+    font-size: 24px;
+    font-family: 'IBM Plex Serif', serif;
+    line-height: 1.45;
+    margin-bottom: 10px;
+}
+
+.preview-container .clauses mark{
+    font-size: 16px;
+    font-family: 'IBM Plex Serif', serif;
+    font-style: italic;
+    cursor: pointer;
+}
+
+
+
+
 
 .concept>button{
     margin-right: 1em;
@@ -318,7 +338,7 @@ table {
     position: relative;
 
     border: 8px solid white;
-    z-index: 1;
+
 
 }
 
@@ -348,11 +368,7 @@ table {
 }
 
 .paneHeader{
-    padding: 10px 0 0 0;
-
-}
-
-.connections .paneHeader{
+    padding: 12px 0 0 0;
 
 }
 
@@ -435,9 +451,23 @@ table {
     left: 0;
 }
 
+
 .pins .paneHeader .panePaddingLeft{
     padding-left: 50px;
+}
 
+.lightBox-header{
+    position: relative;
+    top:0;
+    left: 0;
+    border-bottom: 1px solid silver;
+    padding-top: 20px;
+}
+
+.lightBox-header .MuiIconButton-root{
+    position: absolute;
+    top:20px;
+    left: -55px;
 }
 
 .conceptGroup > h3{

@@ -6,35 +6,35 @@ import {Concept} from "./concept";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
-export class Preview extends React.Component {
+import ClearIcon from '@material-ui/icons/Clear';
 
-    seeConnections(i) {
-        this.props.seeConnections(i)
+export function Preview (props) {
+
+    function seeConnections(i) {
+        props.seeConnections(i)
     }
 
-    exportPin(data) {
-        this.props.exportPin(data)
+    function exportPin(data) {
+        props.exportPin(data)
     }
 
-    exportChildren(data) {
-        this.props.exportChildren(data)
+    function exportChildren(data) {
+        props.exportChildren(data)
     }
 
-    clearPreview() {
-        this.props.clearPreview()
+    function clearPreview() {
+        props.clearPreview()
     }
 
-    render() {
-        let children = this.props.itemOrder
-        let clausesIds = this.props.itemOrder.map(a => a.id)
 
+        let children = props.itemOrder
+        let clausesIds = props.itemOrder.map(a => a.id)
 
-        let clausesToExport = clausesIds.map(name =>
-            conceptsAOA.find(x => x.id === name))
+        let clausesToExport = clausesIds.map(name => props.concepts.find(x => x.id === name))
 
         // --- Find indexes of exported pins in conceptsAOA --- //
 
-        // let clausesIds = this.props.itemOrder.map(a => a.id)
+        // let clausesIds = props.itemOrder.map(a => a.id)
         // let clauses = clausesIds.map(name => conceptsAOA.findIndex(x => x.id === name))
 
         return (<>
@@ -43,7 +43,7 @@ export class Preview extends React.Component {
                     {(provided, snapshot) => (
 
                         <div
-                            className={this.props.className}
+                            className={props.className}
                             ref={provided.innerRef}
                             {...provided.droppableProps}
                         >
@@ -54,7 +54,16 @@ export class Preview extends React.Component {
 
 
                                     <h1>Preview</h1>
-                                    <Button color='primary' onClick={() => this.clearPreview()}>Clear preview</Button>
+                                    <Button variant='outlined' color='primary' onClick={() => clearPreview()}
+                                    startIcon={<ClearIcon/>}
+
+                                            disabled=
+                                                {children.length > 0 ?
+                                                    false:
+                                                    true
+                                                }
+
+                                    >Clear preview</Button>
 
                             </div>
 
@@ -64,7 +73,7 @@ export class Preview extends React.Component {
                                 <a href="#clausesPreview"
                                    id={'pinsPreview'}
                                    className={'a-preview'}>
-                                    Pins
+                                    <h2>Pins</h2>
                                 </a>
 
                                 {children.map((data, index) => {
@@ -83,10 +92,10 @@ export class Preview extends React.Component {
 
                                                         <Concept
 
-                                                            openModal={() => this.props.openModal(data.id, data.name)}
-                                                            onClick={() => this.exportPin(data)}
-                                                            exportChildren={() => this.exportChildren(data)}
-                                                            seeConnections={() => this.seeConnections(data)}
+                                                            openModal={() => props.openModal(data.id, data.name)}
+                                                            onClick={() => exportPin(data)}
+                                                            exportChildren={() => exportChildren(data)}
+                                                            seeConnections={() => seeConnections(data)}
                                                             clause={data.text}
 
                                                             key={data.id}
@@ -96,12 +105,12 @@ export class Preview extends React.Component {
 
 
                                                             isSelected={
-                                                                this.props.itemOrder.find(a => a.id === data.id)
+                                                                props.itemOrder.find(a => a.id === data.id)
                                                             }
-                                                            currentScreen={this.props.currentScreen}
+                                                            currentScreen={props.currentScreen}
 
                                                             isChildOf={data.isChildOf}
-                                                            concepts={this.props.concepts}
+                                                            concepts={props.concepts}
 
                                                         />
                                                     </div>
@@ -118,12 +127,13 @@ export class Preview extends React.Component {
 
                             </div>
 
-                            <div className="preview-container">
+                            <div className="preview-container clauses">
 
                                 <a href="#pinsPreview"
                                    id={'clausesPreview'}
-                                   className={'a-preview'}>
-                                    Clauses
+                                   >
+                                    <h2
+                                    >Clauses</h2>
                                 </a>
 
                                 {clausesToExport.map(data => {
@@ -156,6 +166,6 @@ export class Preview extends React.Component {
         );
 
 
-    }
+
 
 }

@@ -23,10 +23,10 @@ const theme = createMuiTheme({
 
         primary: {
 
-            main: '#000000',
+            main: 'rgb(50,50,50)',
 
             '&:hover': {
-                background: "#f00",
+                background: "#ffffff",
             }
 
         },
@@ -60,7 +60,7 @@ export class App extends React.Component {
         super(props);
 
         this.state = {
-            currentScreen: 'main',
+            currentScreen: 'connections',
             history:['most-common'],
 
             concepts: conceptsAOA,
@@ -99,12 +99,12 @@ export class App extends React.Component {
         this.pinAllHighlights = this.pinAllHighlights.bind(this)
     }
 
-    openModal(id, name) {
+    openModal(id) {
         this.setState({
             clauseId: id,
-            clauseName: name,
             showModal: true
         })
+        console.log(this.state)
 
     }
 
@@ -254,10 +254,10 @@ export class App extends React.Component {
 
     switchScreens(){
 
-        this.state.currentScreen ==='main' ?
+        this.state.currentScreen ==='connections' ?
         this.setState({
             currentScreen:'export'
-        }) : this.setState({currentScreen:'main'})
+        }) : this.setState({currentScreen:'connections'})
     }
 
     switchDocs(doc1, doc2) {
@@ -358,7 +358,7 @@ export class App extends React.Component {
         else
         {prevStep = false}
 
-        if (this.state.currentScreen === 'main')
+        if (this.state.currentScreen === 'connections')
 
 
 
@@ -388,6 +388,7 @@ export class App extends React.Component {
                     clauseName={this.state.clauseName}
                     concepts={this.state.concepts}
                     clauses={this.state.clauses}
+                    currentScreen={this.state.currentScreen}
                 />
                 <Deals className={'pane deals'}
 
@@ -497,6 +498,7 @@ export class App extends React.Component {
                 clauseName={this.state.clauseName}
                 concepts={this.state.concepts}
                 clauses={this.state.clauses}
+                currentScreen={this.state.currentScreen}
             />
 
             <Pins className={'pane pins'}
@@ -547,6 +549,8 @@ export class App extends React.Component {
                 toExport={this.state.toExport}
                 clearPreview={this.clearPreview}
                 concepts={this.state.concepts}
+
+
             />
             <ExportOptions className={'pane exportOptions'}/>
 

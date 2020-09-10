@@ -5,6 +5,8 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
+import AddIcon from '@material-ui/icons/Add';
+
 
 export function Pins (props){
 
@@ -28,7 +30,7 @@ export function Pins (props){
         props.exportChildren(data)
     }
 
-    if (props.currentScreen === 'main') {
+    if (props.currentScreen === 'connections') {
 
             return (
                 <div className={props.className}>
@@ -39,7 +41,20 @@ export function Pins (props){
 
                     <h1>Pins</h1>
 
-                    <Button variant='contained' color='primary' onClick={() => props.switchScreens('export')}>Export pins</Button>
+
+
+                    <Button variant='contained'
+
+                        color='primary' onClick={() => props.switchScreens('export')}
+
+                            disabled=
+                                {props.pins.length > 0 ?
+                                    false:
+                                    true
+                                }
+
+
+                    >Export pins</Button>
 
                     </div>
 
@@ -102,16 +117,19 @@ export function Pins (props){
                         <div className={'paneHeader'}>
 
                             <IconButton aria-controls="simple-menu" aria-haspopup="true"
-                                                                  onClick={() => props.switchScreens('main')}
+                                                                  onClick={() => props.switchScreens('connections')}
                                                                   fontSize="small"
-                                                                  className={'goBack'}>
+                                                                  className={'goBack'}
+                            isDisabled>
                                 <ArrowBackIcon />
                             </IconButton>
 
                         <h1 className={'panePaddingLeft'}>Pins</h1>
 
 
-                            <Button variant='contained' color='primary' onClick={props.exportAll}>Export all</Button>
+                            <Button variant='outlined' color='primary' onClick={props.exportAll} startIcon={<AddIcon/>}
+
+                            >Add all</Button>
 
                         </div>
 

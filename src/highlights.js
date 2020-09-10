@@ -11,6 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import {Button} from "@material-ui/core";
 
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
 
 
 
@@ -109,7 +111,9 @@ export function Highlights (props){
                 <div className={"paneHeader"}>
 
                 <h1>Highlights</h1>
-                    <Button variant='contained' color='primary' onClick={props.pinAllHighlights}
+
+
+                    <Button variant="outlined" color='primary' onClick={props.pinAllHighlights} startIcon={<BookmarkIcon />}
 
                     >Pin all</Button>
 

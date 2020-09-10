@@ -30,13 +30,13 @@ export function Concept (props) {
             color: "black"
     }
 
-        if (props.currentScreen === 'main' && props.isSelected) {
+        if (props.currentScreen === 'connections' && props.isSelected) {
             childrenAction = props.pinChildren
             pinSingle = "Unpin me"
             pinChildren = "Unpin children"
             pinIcon = <BookmarkIcon style={pinIconStyle}/>
 
-        } else if (props.currentScreen === 'main' && !props.isSelected) {
+        } else if (props.currentScreen === 'connections' && !props.isSelected) {
             childrenAction = props.pinChildren
             pinSingle = "Pin me"
             pinChildren = "Pin children"
@@ -112,9 +112,9 @@ export function Concept (props) {
 
     let pinAction
 
-    if (props.currentScreen === 'main' && childrenNames.length > 0) {
+    if (props.currentScreen === 'connections' && childrenNames.length > 0) {
         pinAction = handleClick
-    } else if (props.currentScreen === 'main' && childrenNames.length === 0){
+    } else if (props.currentScreen === 'connections' && childrenNames.length === 0){
         pinAction = props.onClick
     } else if (props.currentScreen === 'export' && childrenNames.length > 0){
         pinAction = handleClick
