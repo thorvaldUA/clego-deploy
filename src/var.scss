@@ -1,10 +1,10 @@
-@use 'globals';
 
-$primary-color: globals.$primary-color;
+$primary-color: black;
 
-$primary-font: globals.$primary-font;
+$primary-font: 'IBM Plex Sans', sans-serif;
+$secondary-font: 'IBM Plex Serif', serif;
 
-$secondary-font: globals.$secondary-font;
+
 
 html * {
   font-family: $primary-font;
@@ -90,6 +90,7 @@ mark{
 a{
   color: $primary-color;
   cursor: pointer;
+  text-decoration: none;
 
 }
 a:hover{

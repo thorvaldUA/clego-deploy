@@ -31,13 +31,14 @@ export function Highlights (props){
         props.pinChildren(name, children)
     }
 
-    function renderHighlights(typeA, typeB) {
+    function renderHighlights(typeA, typeB, absent) {
 
 
         let filteredA = props.concepts.filter(concept => concept.type === typeA)
         let filteredB = props.concepts.filter(concept => concept.type === typeB)
+        let filteredAbsent = props.concepts.filter(concept => concept.name === absent)
 
-        let filtered = filteredA.concat(filteredB)
+        let filtered = filteredA.concat(filteredB).concat(filteredAbsent)
 
         return (
             <div className="column-container">
@@ -112,7 +113,6 @@ export function Highlights (props){
 
                 <h1>Highlights</h1>
 
-
                     <Button variant="outlined" color='primary' onClick={props.pinAllHighlights} startIcon={<BookmarkIcon />}
 
                     >Pin all</Button>
@@ -135,9 +135,7 @@ export function Highlights (props){
                         // classes={{ flexContainer: 'pattern' }}
                     >
 
-                        <StyledTab
-                             label="Both"
-                             {...a11yProps(0)} />
+                        <StyledTab label="All" {...a11yProps(0)} />
 
                         <StyledTab label="Only missing" {...a11yProps(1)} />
 
@@ -147,13 +145,13 @@ export function Highlights (props){
 
                 </Paper>
                 <TabPanel value={value} index={0}>
-                    {renderHighlights("missing","conflict")}
+                    {renderHighlights("missing","conflict", 'ABSENT')}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    {renderHighlights("missing", null)}
+                    {renderHighlights("missing", null, null)}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    {renderHighlights("conflict", null)}
+                    {renderHighlights("conflict", null, null)}
                 </TabPanel>
 
             </div>

@@ -147,8 +147,17 @@ export function Concept (props) {
         />
     }
 
-
-
+    let conceptType
+    if (props.type === 'conflict'){
+        conceptType="conflict"
+    }else if(props.type === 'missing'){
+        conceptType="missing"
+    }else{
+        conceptType="basic"
+    }
+    if (props.name === 'ABSENT'){
+        conceptType='absent'
+    }
 
     return (<>
             <div className={'conceptWrap'}
@@ -158,28 +167,16 @@ export function Concept (props) {
 
                 {props.type === 'basic' ? null :
 
-                    <div className=
-                             {props.type === 'conflict'?
-                                 "conceptIconWrap" + " " + "wrapRed" :
-                                 "conceptIconWrap"
-                             }
-
-
-                         >
+                    <div className={"conceptIconWrap" + " wrap-" + conceptType}>
                         {typeIcon}
                     </div>
                 }
 
 
-            <div
-                className=
-                    {props.type === 'basic'?
-                    'concept' + " " + props.type :
-                    'concept' + " " + props.type + " " + "conceptPaddingLeft"
-                    }
-
-
-            >
+            <div className={props.type !== 'basic' ?
+                    'concept' + " " + conceptType + " " + "conceptPaddingLeft":
+                    'concept' + " " + conceptType
+                }>
                     <h3
                         className={childrenNamesJoined.length > 0 ? "" : "tooltip"}
                         onClick={childrenNames.length > 0 ?
@@ -202,7 +199,7 @@ export function Concept (props) {
 
                 {isMouseInside ?
 
-                    <div className={props.name.length > 27 ?
+                    <div className={props.name.length > 25 ?
                         'conceptActionsLong' : "conceptActionsShort"
                     }>
 

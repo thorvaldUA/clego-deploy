@@ -14,29 +14,31 @@ import Paper from "@material-ui/core/Paper";
 export function Deals(props){
 
     const [state, setState] = React.useState({
-        aoa: true,
-        sha: false
+        doc: "aoa"
+        // aoa: true,
+        // sha: false,
+        // merge: false,
+        // sha2: false
+
     });
 
     useEffect(() => {
-        switchDocs(state.aoa, state.sha)
+        switchDocs(state.doc)
     }
         , [state]);
 
 
     const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked }
-        );
+        // setState({ ...state, [event.target.name]: event.target.checked })
+        setState({doc:event.target.name})
+        ;
     };
 
 
 
-    function switchDocs(doc1, doc2) {
-        props.switchDocs(doc1, doc2)
+    function switchDocs(step) {
+        props.switchDocs(step)
     }
-
-
-
 
         return (
 
@@ -61,7 +63,7 @@ export function Deals(props){
 
                     <FormGroup>
                         <FormControlLabel
-                            control={<Switch checked={state.aoa} onChange={handleChange} name="aoa"
+                            control={<Switch checked={state.doc === 'aoa'} onChange={handleChange} name="aoa"
                                              color="primary"/>}
                             label="Articles of association"
 
@@ -69,9 +71,25 @@ export function Deals(props){
                         />
                         <br/>
                         <FormControlLabel
-                            control={<Switch checked={state.sha} onChange={handleChange} name="sha"
+                            control={<Switch checked={state.doc === 'sha'} onChange={handleChange} name="sha"
                                              color="primary"/>}
-                            label="Shareholders agreeement"
+                            label="ShA 1"
+                            color="secondary"
+
+                        />
+                        <br/>
+                        <FormControlLabel
+                            control={<Switch checked={state.doc === 'merge'} onChange={handleChange} name="merge"
+                                             color="primary"/>}
+                            label="Merged AOA + ShA 1"
+                            color="secondary"
+
+                        />
+                        <br/>
+                        <FormControlLabel
+                            control={<Switch checked={state.doc === 'sha2'} onChange={handleChange} name="sha2"
+                                             color="primary"/>}
+                            label="ShA 2"
                             color="secondary"
 
                         />

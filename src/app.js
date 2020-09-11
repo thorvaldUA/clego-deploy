@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.css";
 
-import {conceptsAOA, conceptsSHA} from "./data";
+import {conceptsAOA, conceptsSHA, conceptsMerge, conceptsSHA2} from "./data";
 import {DragDropContext} from 'react-beautiful-dnd';
 import {Preview} from "./preview";
 import {ExportOptions} from "./exportOptions";
@@ -260,26 +260,18 @@ export class App extends React.Component {
         }) : this.setState({currentScreen:'connections'})
     }
 
-    switchDocs(doc1, doc2) {
+    switchDocs(doc) {
 
         let newConcepts = this.state.concepts
 
-        let AOA = conceptsAOA
-        let SHA = conceptsSHA
-
-        if (doc1 && doc2) {
-            newConcepts = AOA.concat(SHA)
-
-        }
-        else if (doc1 && !doc2) {
-            newConcepts = AOA
-
-        }
-        else if (!doc1 && doc2) {
-            newConcepts = SHA
-        }
-        else{
-            newConcepts = []
+        if(doc==='aoa'){
+            newConcepts = conceptsAOA
+        }else if(doc==='sha'){
+            newConcepts = conceptsSHA
+        }else if(doc==='merge'){
+            newConcepts = conceptsMerge
+        }else if(doc==='sha2'){
+            newConcepts = conceptsSHA2
         }
 
         this.setState({
