@@ -132,9 +132,7 @@ export function Connections (props){
                                 return (<div key={data.id} >
 
                                     <div className={"wrapChild"}>
-                                        <div className={
-                                            data.type + 'Arrow'
-                                        }>>>></div>
+                                        <div className={'arrow' + ' ' + data.type + 'Arrow'}>>>></div>
                                         <Concept
 
                                             onClick={() => conceptClicked(data)}
@@ -179,9 +177,7 @@ export function Connections (props){
                                                 return (<div key={data.id}>
 
                                                         <div className={"wrapChild"}>
-                                                            <div className={
-                                                                data.type + 'Arrow'
-                                                            }>>>></div>
+                                                            <div className={'arrow' + ' ' + data.type + 'Arrow'}>>>></div>
                                                             <Concept
 
                                                                 onClick={() => conceptClicked(data)}

@@ -45,6 +45,29 @@ table {
 
 /*CSS Reset finish*/
 
+
+
+/*CSS variables start*/
+
+:root {
+    --color-primary: black;
+    --color-secondary: rgba(178, 178, 178, 0.5);
+    --color-tertiary: white;
+
+    --color-warning: rgb(255, 0, 0);
+    --color-warning-shade: rgba(255, 0, 0, 0.5);
+    --color-warning-shade: rgba(245, 124, 0, .5);
+    --color-warning: rgb(245, 124, 0);
+    --color-info: rgb(33, 150, 243);
+    --color-info-shade: rgba(33, 150, 243, .5);
+
+    --primary-font: 'IBM Plex Sans', sans-serif;
+    --secondary-font:'IBM Plex Serif', serif;
+}
+/*CSS variables finish*/
+
+
+
 .concept{
     display: flex;
     align-items: center;
@@ -54,31 +77,54 @@ table {
 
     padding: 10px 20px;
 
-    box-shadow: 4px 4px 0px rgba(178, 178, 178, 0.5);
+    box-shadow: 4px 4px 0px var(--color-secondary);
     border-radius: 4px;
-    border: 2px solid white;
+    border: 2px solid var(--color-tertiary);
 
     min-height: 32px;
 }
-
-
 .conflict{
-    box-shadow: 4px 4px 0px rgba(245, 124, 0, .5);
-    border-color: rgb(245, 124, 0);
+    box-shadow: 4px 4px 0px var(--color-warning-shade);
+    border-color: var(--color-warning);
     border-radius: 4px;
 }
 
 .missing{
-    box-shadow: 4px 4px 0px rgba(33, 150, 243, 0.5);
-    border-color: rgb(33, 150, 243);
+    box-shadow: 4px 4px 0px var(--color-info-shade);
+    border-color: var(--color-info);
     border-radius: 4px;
 }
 
 .absent{
-    box-shadow: 4px 4px 0px rgba(255, 0, 0, 0.5);
-    border-color: rgb(255, 0, 0);
+    box-shadow: 4px 4px 0px var(--color-warning-shade);;
+    border-color: var(--color-warning);
     border-radius: 4px;
+    margin-bottom: 12px;
 }
+
+.conceptWrap-absent{
+    margin-bottom: 12px;
+}
+
+.conceptNote{
+    position: absolute;
+
+    bottom:-18px;
+    left: 20px;
+
+    display: block;
+    width: 400px;
+    min-height: 1.5em;
+    text-decoration: underline;
+
+    color: black;
+
+
+
+
+
+}
+
 
 .concept > span{
     display: inline-block;
@@ -116,19 +162,21 @@ table {
 }
 
 .wrap-conflict{
-    background: rgb(245, 124, 0);
+    background: var(--color-warning);
 }
 
 .wrap-missing {
-    background: rgb(33, 150, 243)
+    background: var(--color-info)
 }
 
 .wrap-absent{
-    background: rgb(244, 67, 54)
+    background: var(--color-warning);
+    min-height: calc(100% - 16px);
+
 }
 
 .conceptPaddingLeft{
-    padding-left: 44px;
+    padding-left: 50px;
 }
 
 .conceptActionsLong{
@@ -200,46 +248,45 @@ table {
 }
 
 .wrapChild{
-    display: flex;
-    justify-items: flex-start;
-    align-items: center;
+    /*display: flex;*/
+    /*justify-items: flex-start;*/
+    /*align-items: center;*/
+    position: relative;
     margin-top: 14px;
 }
 
 .wrapChild .conceptWrap{
-    margin-top: 0;
+    position: relative;
+    left: 30px;
+}
+
+.arrow{
+    position: absolute;
+    top: 20px;
+    left: 0px;
 }
 
 .basicArrow{
-    color: rgba(178, 178, 178, 0.5);
+    color: var(--color-secondary);
+
 }
 
 .conflictArrow{
-    color: rgb(255, 0, 0);
+    color: var(--color-warning);
     font-weight: 700;
 }
 
 .missingArrow{
-    color: rgb(0, 25, 255);
+    color: var(--color-info);
     font-weight: 700;
 }
 
-.conceptChildren{
-    /*margin-left: 100px;*/
-}
 
 .basic{
-    border-color: silver;
+    border-color: var(--color-secondary);
 }
 
-.pin{
-    background: antiquewhite;
-    color: black;
-}
 
-.child{
-    color: gray;
-}
 .connections-container{
     /*width: 100%;*/
     height: 90%;
@@ -300,14 +347,14 @@ table {
 
 .preview-container .clauses h3{
     font-size: 24px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     line-height: 1.45;
     margin-bottom: 10px;
 }
 
 .preview-container .clauses mark{
     font-size: 16px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     font-style: italic;
     cursor: pointer;
 }
@@ -368,6 +415,8 @@ table {
 
 .paneHeader h1{
     padding: 0px 0px 10px 20px;
+
+
 }
 
 .paneHeader{
@@ -421,7 +470,7 @@ table {
 .preview h2{
     border-bottom: 1px solid silver;
     font-size: 24px;
-    font-family: "IBM Plex Serif", serif;
+    font-family: var(--secondary-font);
 
 }
 
@@ -462,7 +511,7 @@ table {
 
 .preview .clausesBlock p{
     font-size: 16px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     line-height: 1.45;
     margin-bottom: 10px;
     width: 60ch;
@@ -492,7 +541,7 @@ table {
 
     padding: 15px 10px 10px 20px;
     transition:  250ms;
-    border-bottom: 4px solid rgba(178, 178, 178, 0.5);;
+    border-bottom: 1px solid var(--color-secondary);
 
     /*background-color: #fafafa;*/
     /*background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M36 0H0v36h36V0zM15.126 2H2v13.126c.367.094.714.24 1.032.428L15.554 3.032c-.188-.318-.334-.665-.428-1.032zM18 4.874V18H4.874c-.094-.367-.24-.714-.428-1.032L16.968 4.446c.318.188.665.334 1.032.428zM22.874 2h11.712L20 16.586V4.874c1.406-.362 2.512-1.468 2.874-2.874zm10.252 18H20v13.126c.367.094.714.24 1.032.428l12.522-12.522c-.188-.318-.334-.665-.428-1.032zM36 22.874V36H22.874c-.094-.367-.24-.714-.428-1.032l12.522-12.522c.318.188.665.334 1.032.428zm0-7.748V3.414L21.414 18h11.712c.362-1.406 1.468-2.512 2.874-2.874zm-18 18V21.414L3.414 36h11.712c.362-1.406 1.468-2.512 2.874-2.874zM4.874 20h11.712L2 34.586V22.874c1.406-.362 2.512-1.468 2.874-2.874z' fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");*/
@@ -574,18 +623,18 @@ table {
 
 .lightBox-contents h5{
     font-size: 24px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
 }
 .lightBox-contents div{
     font-size: 16px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     line-height: 1.45;
     margin-bottom: 10px;
 }
 
 .lightBox-contents mark{
     font-size: 16px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     font-style: italic;
     cursor: pointer;
 }

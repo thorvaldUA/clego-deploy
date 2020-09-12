@@ -160,7 +160,7 @@ export function Concept (props) {
     }
 
     return (<>
-            <div className={'conceptWrap'}
+            <div className={'conceptWrap' + " " + 'conceptWrap-' + conceptType}
                  onMouseEnter={mouseEnter}
                  onMouseLeave={mouseLeave}
                  onLoad={props.conceptAmount}>
@@ -225,7 +225,7 @@ export function Concept (props) {
                         </Menu>
 
                         {seeClauseAction}
-                        {/*{commentIcon}*/}
+
 
 
 
@@ -235,7 +235,12 @@ export function Concept (props) {
                     </div>
                     : conceptPinned}
 
+                {conceptType === 'absent' ?
+                    <div className={"conceptNote"}>Only in Client A's Shareholders agreement</div>:null
+                }
+
                 </div>
+
 
 
     </>
