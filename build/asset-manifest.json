@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/clego-deploy/static/css/main.2c672629.chunk.css",
+    "main.js": "/clego-deploy/static/js/main.49e08687.chunk.js",
+    "main.js.map": "/clego-deploy/static/js/main.49e08687.chunk.js.map",
+    "runtime-main.js": "/clego-deploy/static/js/runtime-main.8ccd54ce.js",
+    "runtime-main.js.map": "/clego-deploy/static/js/runtime-main.8ccd54ce.js.map",
+    "static/js/2.51d70eaa.chunk.js": "/clego-deploy/static/js/2.51d70eaa.chunk.js",
+    "static/js/2.51d70eaa.chunk.js.map": "/clego-deploy/static/js/2.51d70eaa.chunk.js.map",
+    "index.html": "/clego-deploy/index.html",
+    "precache-manifest.d5762f4af808f4dd0d4648eea8b8d33a.js": "/clego-deploy/precache-manifest.d5762f4af808f4dd0d4648eea8b8d33a.js",
+    "service-worker.js": "/clego-deploy/service-worker.js",
+    "static/css/main.2c672629.chunk.css.map": "/clego-deploy/static/css/main.2c672629.chunk.css.map",
+    "static/js/2.51d70eaa.chunk.js.LICENSE.txt": "/clego-deploy/static/js/2.51d70eaa.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8ccd54ce.js",
+    "static/js/2.51d70eaa.chunk.js",
+    "static/css/main.2c672629.chunk.css",
+    "static/js/main.49e08687.chunk.js"
+  ]
+}
