@@ -5,14 +5,18 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 
 import IconButton from '@material-ui/core/IconButton';
+import ChatIcon from '@material-ui/icons/Chat';
 
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import FormatIndentIncreaseIcon from '@material-ui/icons/FormatIndentIncrease';
+import ReportIcon from '@material-ui/icons/Report';
 
 
 
 import {Button, Menu, MenuItem} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import {Comment} from "@material-ui/icons";
 
 export function Concept (props) {
         let pinSingle, childrenAction, pinChildren, status, pinIcon;
@@ -26,17 +30,13 @@ export function Concept (props) {
             color: "black"
     }
 
-        // console.log(childrenObj.length)
-
-
-
-        if (props.currentScreen === 'main' && props.isSelected) {
+        if (props.currentScreen === 'connections' && props.isSelected) {
             childrenAction = props.pinChildren
             pinSingle = "Unpin me"
             pinChildren = "Unpin children"
             pinIcon = <BookmarkIcon style={pinIconStyle}/>
 
-        } else if (props.currentScreen === 'main' && !props.isSelected) {
+        } else if (props.currentScreen === 'connections' && !props.isSelected) {
             childrenAction = props.pinChildren
             pinSingle = "Pin me"
             pinChildren = "Pin children"
@@ -102,13 +102,19 @@ export function Concept (props) {
     let conceptPinned
 
     if(props.isSelected)
-        conceptPinned = <div className={"conceptActions"}><IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
+        conceptPinned =
+
+            <div className={props.name.length > 25 ?
+                'conceptActionsLong' : "conceptActionsShort"
+            }>
+
+            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
 
     let pinAction
 
-    if (props.currentScreen === 'main' && childrenNames.length > 0) {
+    if (props.currentScreen === 'connections' && childrenNames.length > 0) {
         pinAction = handleClick
-    } else if (props.currentScreen === 'main' && childrenNames.length === 0){
+    } else if (props.currentScreen === 'connections' && childrenNames.length === 0){
         pinAction = props.onClick
     } else if (props.currentScreen === 'export' && childrenNames.length > 0){
         pinAction = handleClick
@@ -125,27 +131,58 @@ export function Concept (props) {
             seeClauseAction = null
         }
 
+    let commentIcon
+    commentIcon = <IconButton onClick={() => props.openModal(props.id)} fontSize="small">
+        <ChatIcon />
+    </IconButton>
 
+    let typeIcon
+    if (props.type === "conflict") {
+        typeIcon = <ReportIcon
+            style={{ color: 'white' }}
+        />
+    }else{
+        typeIcon = <FormatIndentIncreaseIcon
+            style={{ color: 'white' }}
+        />
+    }
 
-
+    let conceptType
+    if (props.type === 'conflict'){
+        conceptType="conflict"
+    }else if(props.type === 'missing'){
+        conceptType="missing"
+    }else{
+        conceptType="basic"
+    }
+    if (props.name === 'ABSENT'){
+        conceptType='absent'
+    }
 
     return (<>
-            <div className={'conceptWrap'}
+            <div className={'conceptWrap' + " " + 'conceptWrap-' + conceptType}
                  onMouseEnter={mouseEnter}
                  onMouseLeave={mouseLeave}
                  onLoad={props.conceptAmount}>
 
-            <div
-                className={'concept' + " " + props.type}
+                {props.type === 'basic' ? null :
 
-            >
+                    <div className={"conceptIconWrap" + " wrap-" + conceptType}>
+                        {typeIcon}
+                    </div>
+                }
+
+
+            <div className={props.type !== 'basic' ?
+                    'concept' + " " + conceptType + " " + "conceptPaddingLeft":
+                    'concept' + " " + conceptType
+                }>
                     <h3
                         className={childrenNamesJoined.length > 0 ? "" : "tooltip"}
                         onClick={childrenNames.length > 0 ?
                             () => props.seeConnections() : null
                         }
                     >
-
 
                         {props.name}
 
@@ -156,15 +193,15 @@ export function Concept (props) {
 
                         }
 
-                        <span className={childrenNamesJoined.length > 0 ? "displayNone" : "tooltiptext"}>No connections</span>
-
                     </h3><br/>
 
             </div>
 
                 {isMouseInside ?
 
-                    <div className={'conceptActions'}>
+                    <div className={props.name.length > 25 ?
+                        'conceptActionsLong' : "conceptActionsShort"
+                    }>
 
                         <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={pinAction} fontSize="small">
                             {pinIcon}
@@ -194,10 +231,16 @@ export function Concept (props) {
 
 
 
+
                     </div>
                     : conceptPinned}
 
+                {conceptType === 'absent' ?
+                    <div className={"conceptNote"}>Only in Client A's Shareholders agreement</div>:null
+                }
+
                 </div>
+
 
 
     </>

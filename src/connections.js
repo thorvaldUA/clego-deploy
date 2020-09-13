@@ -8,8 +8,6 @@ export function Connections (props){
 
     let amount = []
 
-
-
     function conceptClicked(id) {
         props.conceptClicked(id)
     }
@@ -26,13 +24,7 @@ export function Connections (props){
         props.goBack()
     }
 
-    function conceptAmount(totalAmount){
-
-        amount.push(totalAmount)
-
-
-    }
-
+    function conceptAmount(totalAmount){amount.push(totalAmount)}
 
         let conceptsL1 = props.concepts.filter(a => a.isChildOf.includes(props.conceptGroup));
 
@@ -46,27 +38,22 @@ export function Connections (props){
         return (
             <div className={props.className}>
 
+                <Paper square variant={"outlined"}>
+
+                <div className={"paneHeader"}>
+
                     <h1>Connections</h1>
 
-
-                <Paper elevation={3}>
                     <div className={"conceptGroup"}>
-                        <h2>
-                            {conceptGroupCaps}
-                        </h2>
 
-                        {props.prevStep ?
-                            <a
-                                onClick={() => goBack()}
-
-                            >Back to {props.prevStep}
-
-                            </a>
-                            : null}
+                        {props.prevStep ? <a className={'goBack'} onClick={() => goBack()}>Back to {props.prevStep}</a> :
+                         null
+                        }
+                        <h3>{conceptGroupCaps}</h3>
 
                     </div>
+                </div>
                 </Paper>
-
                 
 
 
@@ -122,8 +109,6 @@ export function Connections (props){
                                         props.pins.find(a => a.id === data.id)
                                     }
 
-                                    hasParent={false}
-
                                 />
                             </div>
 
@@ -133,7 +118,7 @@ export function Connections (props){
 
                                 <div className={'line'}
                                      style={
-                                         {height: amount[myIndex] * 54}
+                                         {height: amount[myIndex] * 68}
                                      }
                                 ></div>
 
@@ -147,9 +132,7 @@ export function Connections (props){
                                 return (<div key={data.id} >
 
                                     <div className={"wrapChild"}>
-                                        <div className={
-                                            data.type + 'Arrow'
-                                        }>>>></div>
+                                        <div className={'arrow' + ' ' + data.type + 'Arrow'}>>>></div>
                                         <Concept
 
                                             onClick={() => conceptClicked(data)}
@@ -172,9 +155,6 @@ export function Connections (props){
                                                 props.pins.find(a => a.id === data.id)
                                             }
 
-                                            hasParent={false}
-
-
                                         />
                                     </div>
 
@@ -186,7 +166,7 @@ export function Connections (props){
 
                                             <div className={'lineLvl2'}
                                                  style={
-                                                     {height: conceptsL3.length * 54}
+                                                     {height: conceptsL3.length * 68}
                                                  }
                                             ></div>
 
@@ -197,9 +177,7 @@ export function Connections (props){
                                                 return (<div key={data.id}>
 
                                                         <div className={"wrapChild"}>
-                                                            <div className={
-                                                                data.type + 'Arrow'
-                                                            }>>>></div>
+                                                            <div className={'arrow' + ' ' + data.type + 'Arrow'}>>>></div>
                                                             <Concept
 
                                                                 onClick={() => conceptClicked(data)}
@@ -219,8 +197,6 @@ export function Connections (props){
                                                                 isSelected={
                                                                     props.pins.find(a => a.id === data.id)
                                                                 }
-
-                                                                hasParent={false}
 
 
                                                             />

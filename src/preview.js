@@ -1,39 +1,44 @@
 import React from "react";
 
-import {pinData1, pinData2} from "./data";
+import {conceptsAOA, conceptsSHA} from "./data";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {Concept} from "./concept";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
-export class Preview extends React.Component {
+import ClearIcon from '@material-ui/icons/Clear';
 
-    seeConnections(i) {
-        this.props.seeConnections(i)
+
+
+export function Preview (props) {
+
+    function seeConnections(i) {
+        props.seeConnections(i)
     }
 
-    exportPin(data) {
-        this.props.exportPin(data)
+    function exportPin(data) {
+        props.exportPin(data)
     }
 
-    exportChildren(data) {
-        this.props.exportChildren(data)
+    function exportChildren(data) {
+        props.exportChildren(data)
     }
 
-    clearPreview() {
-        this.props.clearPreview()
+    function clearPreview() {
+        props.clearPreview()
     }
 
-    render() {
-        let children = this.props.itemOrder
-        let clausesIds = this.props.itemOrder.map(a => a.id)
 
+        let children = props.itemOrder
+        let clausesIds = props.itemOrder.map(a => a.id)
 
-        let clausesToExport = clausesIds.map(name =>
-            pinData1.find(x => x.id === name))
+        let clausesToExport = clausesIds.map(name => props.concepts.find(x => x.id === name))
 
-        // --- Find indexes of exported pins in pinData1 --- //
+        // --- Find indexes of exported pins in conceptsAOA --- //
 
-        // let clausesIds = this.props.itemOrder.map(a => a.id)
-        // let clauses = clausesIds.map(name => pinData1.findIndex(x => x.id === name))
+        // let clausesIds = props.itemOrder.map(a => a.id)
+        // let clauses = clausesIds.map(name => conceptsAOA.findIndex(x => x.id === name))
+
 
         return (<>
 
@@ -41,20 +46,37 @@ export class Preview extends React.Component {
                     {(provided, snapshot) => (
 
                         <div
-                            className={this.props.className}
+                            className={props.className}
                             ref={provided.innerRef}
                             {...provided.droppableProps}
                         >
 
+                            <Paper square variant={"outlined"}>
 
-                            <h1>Preview</h1><br/>
-                            <button onClick={() => this.clearPreview()}>Clear preview</button>
+                                <div className={'paneHeader'}>
+
+
+                                    <h1>Preview</h1>
+                                    <Button variant='outlined' color='primary' onClick={() => clearPreview()}
+                                    startIcon={<ClearIcon/>}
+
+                                            disabled=
+                                                {children.length > 0 ?
+                                                    false:
+                                                    true
+                                                }
+
+                                    >Clear preview</Button>
+
+                            </div>
+
+                            </Paper>
                             <div className="preview-container">
 
                                 <a href="#clausesPreview"
                                    id={'pinsPreview'}
                                    className={'a-preview'}>
-                                    Pins
+                                    <h2>Pins</h2>
                                 </a>
 
                                 {children.map((data, index) => {
@@ -68,15 +90,17 @@ export class Preview extends React.Component {
                                                     {...provided.dragHandleProps}
                                                 >
 
-                                                    <div key={data.id}>
+                                                    <a key={data.id}
+                                                        href={"#" + data.id}
+                                                    >
 
 
                                                         <Concept
 
-                                                            openModal={() => this.props.openModal(data.id, data.name)}
-                                                            onClick={() => this.exportPin(data)}
-                                                            exportChildren={() => this.exportChildren(data)}
-                                                            seeConnections={() => this.seeConnections(data)}
+                                                            openModal={() => props.openModal(data.id, data.name)}
+                                                            onClick={() => exportPin(data)}
+                                                            exportChildren={() => exportChildren(data)}
+                                                            seeConnections={() => seeConnections(data)}
                                                             clause={data.text}
 
                                                             key={data.id}
@@ -86,17 +110,15 @@ export class Preview extends React.Component {
 
 
                                                             isSelected={
-                                                                this.props.itemOrder.find(a => a.id === data.id)
+                                                                props.itemOrder.find(a => a.id === data.id)
                                                             }
-                                                            currentScreen={this.props.currentScreen}
+                                                            currentScreen={props.currentScreen}
 
                                                             isChildOf={data.isChildOf}
-                                                            concepts={this.props.concepts}
-                                                            hasParent={false}
-
+                                                            concepts={props.concepts}
 
                                                         />
-                                                    </div>
+                                                    </a>
 
                                                 </div>
                                             )}
@@ -110,19 +132,27 @@ export class Preview extends React.Component {
 
                             </div>
 
-                            <div className="preview-container">
+                            <div className="preview-container clauses">
 
-                                <a href="#pinsPreview"
-                                   id={'clausesPreview'}
-                                   className={'a-preview'}>
-                                    Clauses
+                                <a href="#pinsPreview" id={'clausesPreview'}>
+                                    <h2>Clauses</h2>
                                 </a>
+
+
+
+
 
                                 {clausesToExport.map(data => {
                                         return (
-                                            <>
-                                            <h3>{data.name}</h3><br/>
-                                                <small>{data.document}</small><br/>
+                                            <div className={'clausesBlock'}
+                                                 // href={"#" + data.id}
+                                                id={data.id}
+
+                                                     >
+
+                                            <h3>{data.name}</h3>
+                                            <div className={'doc'}>{data.document}</div>
+
                                             <div dangerouslySetInnerHTML={
                                                 {
                                                     __html: data.text
@@ -131,7 +161,7 @@ export class Preview extends React.Component {
                                                  key={data.id}
                                             ></div>
 
-                                            </>
+                                            </div>
                                         )
                                     }
                                 )}
@@ -148,6 +178,6 @@ export class Preview extends React.Component {
         );
 
 
-    }
+
 
 }

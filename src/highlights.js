@@ -1,30 +1,23 @@
 import React from "react";
 import {Concept} from "./concept";
 
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+import { withStyles } from '@material-ui/core/styles';
+import Paper from "@material-ui/core/Paper";
+import {Button} from "@material-ui/core";
 
-    },
-    label: {
-        textTransform: 'capitalize',
-    },
-});
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
+
+
+
 
 export function Highlights (props){
-
-    const classes = useStyles();
-
-
-
 
     function seeConnections(i) {
         props.seeConnections(i)
@@ -38,13 +31,14 @@ export function Highlights (props){
         props.pinChildren(name, children)
     }
 
-    function renderHighlights(typeA, typeB) {
+    function renderHighlights(typeA, typeB, absent) {
 
 
         let filteredA = props.concepts.filter(concept => concept.type === typeA)
         let filteredB = props.concepts.filter(concept => concept.type === typeB)
+        let filteredAbsent = props.concepts.filter(concept => concept.name === absent)
 
-        let filtered = filteredA.concat(filteredB)
+        let filtered = filteredA.concat(filteredB).concat(filteredAbsent)
 
         return (
             <div className="column-container">
@@ -77,7 +71,6 @@ export function Highlights (props){
                                 }
 
                                 comment={data.comments}
-                                hasParent={false}
 
                             />
                         </div>
@@ -95,22 +88,42 @@ export function Highlights (props){
         setValue(newValue);
     };
 
-    const tabStyle = {
-        textTransform: "capitalize"
-    }
+    const StyledTab = withStyles({
+        root: {
 
-    const appBarStyle = {
-        flexGrow: 1
-    }
+            minWidth: "120px",
+            maxWidth: "180px",
 
+        },
+        wrapper: {
+            textTransform: "capitalize",
 
+            fontSize: '14px',
+
+            fontWeight: '700'
+        },
+    })(Tab);
 
     return  (
             <div className={props.className}>
 
-                <h1 style={{border: "0"}}>Highlights</h1>
+                <Paper square variant={"outlined"}>
 
-                <AppBar position="static" color="default">
+                <div className={"paneHeader"}>
+
+                <h1>Highlights</h1>
+
+                    <Button variant="outlined" color='primary' onClick={props.pinAllHighlights} startIcon={<BookmarkIcon />}
+
+                    >Pin all</Button>
+
+                </div>
+
+
+
+                <AppBar position="static"
+                    color='inherit'
+                        elevation={0}>
 
                     <Tabs
                         value={value}
@@ -119,22 +132,26 @@ export function Highlights (props){
 
                         indicatorColor="primary"
                         textColor="primary"
-                        style={appBarStyle}
+                        // classes={{ flexContainer: 'pattern' }}
                     >
 
-                        <Tab style={tabStyle} label="Both" {...a11yProps(0)} />
-                        <Tab style={tabStyle} label="Only missing" {...a11yProps(1)} />
-                        <Tab style={tabStyle} label="Only conflict" {...a11yProps(2)} />
+                        <StyledTab label="All" {...a11yProps(0)} />
+
+                        <StyledTab label="Only missing" {...a11yProps(1)} />
+
+                        <StyledTab label="Only conflict" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
+
+                </Paper>
                 <TabPanel value={value} index={0}>
-                    {renderHighlights("missing","conflict")}
+                    {renderHighlights("missing","conflict", 'ABSENT')}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    {renderHighlights("missing", null)}
+                    {renderHighlights("missing", null, null)}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    {renderHighlights("conflict", null)}
+                    {renderHighlights("conflict", null, null)}
                 </TabPanel>
 
             </div>

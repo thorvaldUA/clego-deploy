@@ -1,64 +1,68 @@
 import React from "react";
 import {Button} from "@material-ui/core";
-import DescriptionIcon from "@material-ui/icons/Description";
 import {Concept} from "./concept";
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export class Pins extends React.Component {
+import AddIcon from '@material-ui/icons/Add';
 
-    constructor(props) {
-        super(props)
-        this.conceptClicked = this.conceptClicked.bind(this)
+
+export function Pins (props){
+
+    function conceptClicked(id) {
+        props.conceptClicked(id)
     }
 
-    conceptClicked(id) {
-        this.props.conceptClicked(id)
+    function pinChildren(name, children) {
+        props.pinChildren(name, children)
     }
 
-    pinChildren(name, children) {
-        this.props.pinChildren(name, children)
+    function seeConnections(i) {
+        props.seeConnections(i)
     }
 
-    switchScreens() {
-        this.props.switchScreens()
+    function exportPin(data) {
+        props.exportPin(data)
     }
 
-    seeConnections(i) {
-        this.props.seeConnections(i)
+    function exportChildren(data) {
+        props.exportChildren(data)
     }
 
-    exportPin(data) {
-        this.props.exportPin(data)
-    }
-
-    exportChildren(data) {
-        this.props.exportChildren(data)
-    }
-
-    render() {
-
-        if (this.props.currentScreen === 'main') {
+    if (props.currentScreen === 'connections') {
 
             return (
-                <div
-                    className={this.props.className}
+                <div className={props.className}>
+
+                    <Paper square variant={"outlined"}>
+
+                    <div className={'paneHeader'}>
+
+                    <h1>Pins</h1>
 
 
-                >
-                    <h1>Pins</h1><br/>
 
-                    <Button
-                        onClick={() => this.props.switchScreens('export')}>
-                        <DescriptionIcon/>
-                        To export
-                    </Button>
+                    <Button variant='contained'
+
+                        color='primary' onClick={() => props.switchScreens('export')}
+
+                            disabled=
+                                {props.pins.length > 0 ?
+                                    false:
+                                    true
+                                }
 
 
-                    {/*<button onClick={()=>this.props.switchScreens('export')}>To export</button>*/}
+                    >Export pins</Button>
+
+                    </div>
+
+                    </Paper>
 
                     <div className={"column-container"}>
 
-
-                        {this.props.pins.map((data) => {
+                        {props.pins.map((data) => {
                             return (
 
 
@@ -67,10 +71,10 @@ export class Pins extends React.Component {
                                     <Concept
 
 
-                                        openModal={() => this.props.openModal(data.id, data.name)}
-                                        onClick={() => this.conceptClicked(data)}
-                                        pinChildren={() => this.pinChildren(data)}
-                                        seeConnections={() => this.seeConnections(data)}
+                                        openModal={() => props.openModal(data.id, data.name)}
+                                        onClick={() => conceptClicked(data)}
+                                        pinChildren={() => pinChildren(data)}
+                                        seeConnections={() => seeConnections(data)}
                                         clause={data.text}
 
                                         key={data.id}
@@ -78,14 +82,13 @@ export class Pins extends React.Component {
                                         name={data.name}
                                         type={data.type}
                                         isSelected={
-                                            this.props.pins.find(a => a.id === data.id)
+                                            props.pins.find(a => a.id === data.id)
                                         }
                                         comment={data.comments}
-                                        currentScreen={this.props.currentScreen}
+                                        currentScreen={props.currentScreen}
 
                                         isChildOf={data.isChildOf}
-                                        concepts={this.props.concepts}
-                                        hasParent={false}
+                                        concepts={props.concepts}
 
                                     />
                                 </div>
@@ -102,28 +105,52 @@ export class Pins extends React.Component {
 
             return (
                 <div
-                    className={this.props.className}
-
-
+                    className={props.className}
                 >
+                    <Paper square variant={"outlined"}>
 
-                    <h1>Pins</h1><br/>
 
 
-                    <button onClick={() => this.props.switchScreens('main')}>Back to connections</button>
+
+
+
+                        <div className={'paneHeader'}>
+
+                            <IconButton aria-controls="simple-menu" aria-haspopup="true"
+                                                                  onClick={() => props.switchScreens('connections')}
+                                                                  fontSize="small"
+                                                                  className={'goBack'}
+                            isDisabled>
+                                <ArrowBackIcon />
+                            </IconButton>
+
+                        <h1 className={'panePaddingLeft'}>Pins</h1>
+
+
+                            <Button variant='outlined' color='primary' onClick={props.exportAll} startIcon={<AddIcon/>}
+
+                            >Add all</Button>
+
+                        </div>
+
+
+
+                    </Paper>
+
+
                     <div className={"column-container"}>
 
-                        {this.props.pins.map((data) => {
+                        {props.pins.map((data) => {
                             return (
 
 
                                 <div key={data.id}>
 
                                     <Concept
-                                        openModal={() => this.props.openModal(data.id, data.name)}
-                                        onClick={() => this.exportPin(data)}
-                                        exportChildren={() => this.exportChildren(data)}
-                                        seeConnections={() => this.seeConnections(data)}
+                                        openModal={() => props.openModal(data.id, data.name)}
+                                        onClick={() => exportPin(data)}
+                                        exportChildren={() => exportChildren(data)}
+                                        seeConnections={() => seeConnections(data)}
                                         clause={data.text}
 
                                         key={data.id}
@@ -131,14 +158,13 @@ export class Pins extends React.Component {
                                         name={data.name}
                                         type={data.type}
                                         isSelected={
-                                            this.props.toExport.find(a => a.id === data.id)
+                                            props.toExport.find(a => a.id === data.id)
                                         }
                                         comment={data.comments}
-                                        currentScreen={this.props.currentScreen}
+                                        currentScreen={props.currentScreen}
 
                                         isChildOf={data.isChildOf}
-                                        concepts={this.props.concepts}
-                                        hasParent={false}
+                                        concepts={props.concepts}
 
                                     />
                                 </div>
@@ -151,6 +177,6 @@ export class Pins extends React.Component {
             )
 
         }
-    }
+
 
 }

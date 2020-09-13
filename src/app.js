@@ -1,11 +1,8 @@
 import React from "react";
 import "./main.css";
 
-import {pinData1, pinData2} from "./data";
-
+import {conceptsAOA, conceptsSHA, conceptsMerge, conceptsSHA2} from "./data";
 import {DragDropContext} from 'react-beautiful-dnd';
-
-// import {Provider, defaultTheme, Text, Button, RadioGroup, Radio, TextField, Checkbox, MenuTrigger, ActionButton, Menu, Item, DialogTrigger, Dialog, Heading, Divider, Content, StatusLight} from './@adobe/react-spectrum';
 import {Preview} from "./preview";
 import {ExportOptions} from "./exportOptions";
 import {LightBox} from "./lightBox";
@@ -15,9 +12,43 @@ import {Highlights} from "./highlights";
 import {Pins} from "./pins";
 
 
-// import NotificationsIcon from './@spectrum-icons/workflow/NotificationsIcon';
-// import NotificationsNoneIcon from './@spectrum-icons/workflow/NotificationsNoneIcon';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+import { grey, deepPurple, amber } from '@material-ui/core/colors';
+
+
+const theme = createMuiTheme({
+
+    palette: {
+
+        primary: {
+
+            main: 'rgb(50,50,50)',
+
+            '&:hover': {
+                background: "#ffffff",
+            }
+
+        },
+
+        secondary: {
+
+            main: amber[500],
+
+            contrastText: deepPurple[900],
+
+        },
+
+    },
+
+    button: {
+        background: "#f1f1f1",
+        '&:hover': {
+            background: "#f00",
+        },
+    },
+
+});
 
 
 
@@ -29,13 +60,12 @@ export class App extends React.Component {
         super(props);
 
         this.state = {
-            currentScreen: 'main',
+            currentScreen: 'connections',
             history:['most-common'],
 
-            concepts: pinData1,
+            concepts: conceptsAOA,
             pins: [],
             toExport: [],
-            // clauses:clauses1,
 
             conceptGroup: 'most-common',
 
@@ -56,7 +86,7 @@ export class App extends React.Component {
         this.openModal = this.openModal.bind(this)
 
         this.switchScreens = this.switchScreens.bind(this)
-        this.switchDeals = this.switchDeals.bind(this)
+        this.switchDocs = this.switchDocs.bind(this)
 
         this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -64,14 +94,17 @@ export class App extends React.Component {
         this.exportChildren = this.exportChildren.bind(this)
 
         this.clearPreview = this.clearPreview.bind(this)
+
+        this.exportAll = this.exportAll.bind(this)
+        this.pinAllHighlights = this.pinAllHighlights.bind(this)
     }
 
-    openModal(id, name) {
+    openModal(id) {
         this.setState({
             clauseId: id,
-            clauseName: name,
             showModal: true
         })
+        console.log(this.state)
 
     }
 
@@ -109,7 +142,19 @@ export class App extends React.Component {
         }))
     }
 
+    pinAllHighlights(){
 
+        let pins = this.state.pins.slice();
+
+        let filtered = this.state.concepts.filter(concept => concept.type !== "basic")
+
+        pins = filtered
+
+        this.setState(prevState => ({
+            pins: pins
+        }))
+
+    }
 
     seeConnections(i){
         let myName = i.name.replace(/\s+/g, '-').toLowerCase();
@@ -135,7 +180,7 @@ export class App extends React.Component {
             conceptGroup: prevStep,
             history: newHistory
         }))
-            console.log(this.state)
+
         } else {}
 
     }
@@ -192,32 +237,48 @@ export class App extends React.Component {
         } else {
             toExport.splice(pinIndex, 1)
         }
+  }
 
+  exportAll(){
 
+      let toExport = this.state.toExport.slice()
 
+      toExport = this.state.pins
 
-    }
+      this.setState({
+          toExport: toExport,
+          itemOrder: toExport
+      })
+
+  }
 
     switchScreens(){
 
-        this.state.currentScreen ==='main' ?
+        this.state.currentScreen ==='connections' ?
         this.setState({
             currentScreen:'export'
-        }) : this.setState({currentScreen:'main'})
+        }) : this.setState({currentScreen:'connections'})
     }
 
-    switchDeals(){
-        let concepts = this.state.concepts
-        if (concepts===pinData2){
-            this.setState(prevState=>(
-                 {concepts:pinData1}
-                 ));
+    switchDocs(doc) {
 
-        }else{
-                this.setState(prevState=>(
-                    {concepts:pinData2}
-                ));
-        }}
+        let newConcepts = this.state.concepts
+
+        if(doc==='aoa'){
+            newConcepts = conceptsAOA
+        }else if(doc==='sha'){
+            newConcepts = conceptsSHA
+        }else if(doc==='merge'){
+            newConcepts = conceptsMerge
+        }else if(doc==='sha2'){
+            newConcepts = conceptsSHA2
+        }
+
+        this.setState({
+            concepts: newConcepts
+        })
+    }
+
 
     clearPreview(){
         this.setState(prevState=>({toExport:[], itemOrder: []}))
@@ -273,6 +334,14 @@ export class App extends React.Component {
 
     render() {
 
+
+
+
+
+
+
+
+
         let prevStep
         if (this.state.history.length > 1) {
             prevStep = this.state.history[this.state.history.length - 2]
@@ -281,8 +350,13 @@ export class App extends React.Component {
         else
         {prevStep = false}
 
-        if (this.state.currentScreen === 'main')
+        if (this.state.currentScreen === 'connections')
+
+
+
             return(
+
+                <ThemeProvider theme={theme}>
 
 
 
@@ -306,9 +380,12 @@ export class App extends React.Component {
                     clauseName={this.state.clauseName}
                     concepts={this.state.concepts}
                     clauses={this.state.clauses}
+                    currentScreen={this.state.currentScreen}
                 />
                 <Deals className={'pane deals'}
-                    switchDeals={this.switchDeals}
+
+                       switchDocs={this.switchDocs}
+
                 />
 
 
@@ -349,6 +426,8 @@ export class App extends React.Component {
                             seeConnections={this.seeConnections}
                             currentScreen={this.state.currentScreen}
 
+                            pinAllHighlights={this.pinAllHighlights}
+
                 />
 
 
@@ -378,10 +457,14 @@ export class App extends React.Component {
 
                 </DragDropContext>
 
+                </ThemeProvider>
+
 
 
                     );
             return(
+
+                <ThemeProvider theme={theme}>
 
 
 
@@ -407,6 +490,7 @@ export class App extends React.Component {
                 clauseName={this.state.clauseName}
                 concepts={this.state.concepts}
                 clauses={this.state.clauses}
+                currentScreen={this.state.currentScreen}
             />
 
             <Pins className={'pane pins'}
@@ -425,6 +509,10 @@ export class App extends React.Component {
                   currentScreen={this.state.currentScreen}
                   toExport={this.state.toExport}
                   seeConnections={this.seeConnections}
+
+                  exportAll={this.exportAll}
+
+
 
             />
             <Preview
@@ -453,6 +541,8 @@ export class App extends React.Component {
                 toExport={this.state.toExport}
                 clearPreview={this.clearPreview}
                 concepts={this.state.concepts}
+
+
             />
             <ExportOptions className={'pane exportOptions'}/>
 
@@ -461,6 +551,8 @@ export class App extends React.Component {
             </DragDropContext>
 
             </div>
+
+                </ThemeProvider>
 
 
 
