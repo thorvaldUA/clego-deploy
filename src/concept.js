@@ -19,45 +19,45 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import {Comment} from "@material-ui/icons";
 
 export function Concept (props) {
-    let pinSingle, childrenAction, pinChildren, status, pinIcon;
+        let pinSingle, childrenAction, pinChildren, status, pinIcon;
 
-    let myName = props.name.replace(/\s+/g, '-').toLowerCase();
-    let childrenObj = props.concepts.filter(a => a.isChildOf.includes(myName));
-    let childrenNames = childrenObj.map(a => a.name)
-    let childrenNamesJoined = childrenNames.join(', ')
+        let myName = props.name.replace(/\s+/g, '-').toLowerCase();
+        let childrenObj = props.concepts.filter(a => a.isChildOf.includes(myName));
+        let childrenNames = childrenObj.map(a => a.name)
+        let childrenNamesJoined = childrenNames.join(', ')
 
     const pinIconStyle = {
-        color: "black"
+            color: "black"
     }
 
-    if (props.currentScreen === 'connections' && props.isSelected) {
-        childrenAction = props.pinChildren
-        pinSingle = "Unpin me"
-        pinChildren = "Unpin children"
-        pinIcon = <BookmarkIcon style={pinIconStyle}/>
+        if (props.currentScreen === 'connections' && props.isSelected) {
+            childrenAction = props.pinChildren
+            pinSingle = "Unpin me"
+            pinChildren = "Unpin children"
+            pinIcon = <BookmarkIcon style={pinIconStyle}/>
 
-    } else if (props.currentScreen === 'connections' && !props.isSelected) {
-        childrenAction = props.pinChildren
-        pinSingle = "Pin me"
-        pinChildren = "Pin children"
-        pinIcon = <BookmarkBorderIcon style={pinIconStyle}/>
-    } else if (props.currentScreen === 'export' && props.isSelected) {
-        childrenAction = props.exportChildren
-        pinSingle = "Remove from export"
-        pinChildren = "Remove children"
-        pinIcon = <RemoveIcon style={pinIconStyle}/>
+        } else if (props.currentScreen === 'connections' && !props.isSelected) {
+            childrenAction = props.pinChildren
+            pinSingle = "Pin me"
+            pinChildren = "Pin children"
+            pinIcon = <BookmarkBorderIcon style={pinIconStyle}/>
+        } else if (props.currentScreen === 'export' && props.isSelected) {
+            childrenAction = props.exportChildren
+            pinSingle = "Remove from export"
+            pinChildren = "Remove children"
+            pinIcon = <RemoveIcon style={pinIconStyle}/>
 
-    } else if (props.currentScreen === 'export' && !props.isSelected) {
-        childrenAction = props.exportChildren
-        pinSingle = "Export me"
-        pinChildren = "Export children"
-        pinIcon = <AddIcon style={pinIconStyle}/>
+        } else if (props.currentScreen === 'export' && !props.isSelected) {
+            childrenAction = props.exportChildren
+            pinSingle = "Export me"
+            pinChildren = "Export children"
+            pinIcon = <AddIcon style={pinIconStyle}/>
 
-    }
+        }
 
-    if(props.isSelected){
+        if(props.isSelected){
 
-    }
+        }
 
     //    Pin menu with material //
 
@@ -76,18 +76,18 @@ export function Concept (props) {
 
     //Popover hint with material
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+        const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+        const handleClose = () => {
+            setAnchorEl(null);
 
-    };
+        };
 
-    //hover action bar
+        //hover action bar
 
     const [isMouseInside, setIsMouseInside] = React.useState(null);
 
@@ -108,7 +108,7 @@ export function Concept (props) {
                 'conceptActionsLong' : "conceptActionsShort"
             }>
 
-                <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
+            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} fontSize="small">{pinIcon}</IconButton></div>
 
     let pinAction
 
@@ -123,13 +123,13 @@ export function Concept (props) {
     }
 
     let seeClauseAction
-    if (props.text !== "FALSE"){
-        seeClauseAction = <IconButton onClick={() => props.openModal(props.id)} fontSize="small">
-            <FormatListBulletedIcon />
-        </IconButton>
-    }else{
-        seeClauseAction = null
-    }
+        if (props.text !== "FALSE"){
+            seeClauseAction = <IconButton onClick={() => props.openModal(props.id)} fontSize="small">
+                <FormatListBulletedIcon />
+            </IconButton>
+        }else{
+            seeClauseAction = null
+        }
 
     let commentIcon
     commentIcon = <IconButton onClick={() => props.openModal(props.id)} fontSize="small">
@@ -173,7 +173,7 @@ export function Concept (props) {
                 }
 
 
-                <div className={props.type !== 'basic' ?
+            <div className={props.type !== 'basic' ?
                     'concept' + " " + conceptType + " " + "conceptPaddingLeft":
                     'concept' + " " + conceptType
                 }>
@@ -195,7 +195,7 @@ export function Concept (props) {
 
                     </h3><br/>
 
-                </div>
+            </div>
 
                 {isMouseInside ?
 
@@ -239,13 +239,13 @@ export function Concept (props) {
                     <div className={"conceptNote"}>Only in Client A's Shareholders agreement</div>:null
                 }
 
-            </div>
+                </div>
 
 
 
-        </>
+    </>
 
-    );
+        );
 
 
 

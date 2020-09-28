@@ -1,5 +1,3 @@
-//Mon 14:31
-
 import React from "react";
 import "./main.css";
 
@@ -178,10 +176,10 @@ export class App extends React.Component {
         if(newHistory.length > 1) {
             newHistory.pop()
 
-            this.setState(prevState=>({
-                conceptGroup: prevStep,
-                history: newHistory
-            }))
+        this.setState(prevState=>({
+            conceptGroup: prevStep,
+            history: newHistory
+        }))
 
         } else {}
 
@@ -213,10 +211,10 @@ export class App extends React.Component {
         this.setState({
             toExport: toExport,
             itemOrder: toExport
-        })
+            })
 
 
-    }
+        }
 
     exportChildren(i){
 
@@ -239,27 +237,27 @@ export class App extends React.Component {
         } else {
             toExport.splice(pinIndex, 1)
         }
-    }
+  }
 
-    exportAll(){
+  exportAll(){
 
-        let toExport = this.state.toExport.slice()
+      let toExport = this.state.toExport.slice()
 
-        toExport = this.state.pins
+      toExport = this.state.pins
 
-        this.setState({
-            toExport: toExport,
-            itemOrder: toExport
-        })
+      this.setState({
+          toExport: toExport,
+          itemOrder: toExport
+      })
 
-    }
+  }
 
     switchScreens(){
 
         this.state.currentScreen ==='connections' ?
-            this.setState({
-                currentScreen:'export'
-            }) : this.setState({currentScreen:'connections'})
+        this.setState({
+            currentScreen:'export'
+        }) : this.setState({currentScreen:'connections'})
     }
 
     switchDocs(doc) {
@@ -347,7 +345,7 @@ export class App extends React.Component {
         let prevStep
         if (this.state.history.length > 1) {
             prevStep = this.state.history[this.state.history.length - 2]
-                .replace(/-/g, " ").replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+            .replace(/-/g, " ").replace(/(^\w|\s\w)/g, m => m.toUpperCase())
         }
         else
         {prevStep = false}
@@ -362,111 +360,111 @@ export class App extends React.Component {
 
 
 
-                    <DragDropContext
-                        onBeforeCapture={this.onBeforeCapture}
-                        onBeforeDragStart={this.onBeforeDragStart}
-                        onDragStart={this.onDragStart}
-                        onDragUpdate={this.onDragUpdate}
-                        onDragEnd={this.onDragEnd}
-                    >
+                <DragDropContext
+                    onBeforeCapture={this.onBeforeCapture}
+                    onBeforeDragStart={this.onBeforeDragStart}
+                    onDragStart={this.onDragStart}
+                    onDragUpdate={this.onDragUpdate}
+                    onDragEnd={this.onDragEnd}
+                >
 
 
 
-                        <div className={'App'}>
+                <div className={'App'}>
 
 
-                            <LightBox
-                                showModal={this.state.showModal}
-                                closeModal={this.closeModal}
-                                clauseId={this.state.clauseId}
-                                clauseName={this.state.clauseName}
-                                concepts={this.state.concepts}
-                                clauses={this.state.clauses}
-                                currentScreen={this.state.currentScreen}
-                            />
-                            <Deals className={'pane deals'}
+                <LightBox
+                    showModal={this.state.showModal}
+                    closeModal={this.closeModal}
+                    clauseId={this.state.clauseId}
+                    clauseName={this.state.clauseName}
+                    concepts={this.state.concepts}
+                    clauses={this.state.clauses}
+                    currentScreen={this.state.currentScreen}
+                />
+                <Deals className={'pane deals'}
 
-                                   switchDocs={this.switchDocs}
+                       switchDocs={this.switchDocs}
 
-                            />
-
-
-                            <Connections
-                                className={'pane connections'}
-
-                                conceptClicked={this.conceptClicked}
-                                addComment={this.addComment}
-                                concepts={this.state.concepts}
-
-                                conceptGroup={this.state.conceptGroup}
-                                pinChildren={this.pinChildren}
-                                seeConnections={this.seeConnections}
-
-                                goBack={this.goBack}
-                                prevStep={prevStep}
-
-                                comment={this.state.comment}
-
-                                pins={this.state.pins}
-
-                                openModal={this.openModal}
-                                itemOrder={this.state.itemOrder}
-
-                                currentScreen={this.state.currentScreen}
-                            />
+                />
 
 
-                            <Highlights className={'pane highlights'}
-                                        concepts={this.state.concepts}
-                                        conceptGroup={this.state.conceptGroup}
+                <Connections
+                    className={'pane connections'}
 
-                                        pins={this.state.pins}
-                                        openModal={this.openModal}
-                                        conceptClicked={this.conceptClicked}
-                                        pinChildren={this.pinChildren}
+                    conceptClicked={this.conceptClicked}
+                    addComment={this.addComment}
+                    concepts={this.state.concepts}
 
-                                        seeConnections={this.seeConnections}
-                                        currentScreen={this.state.currentScreen}
+                    conceptGroup={this.state.conceptGroup}
+                    pinChildren={this.pinChildren}
+                    seeConnections={this.seeConnections}
 
-                                        pinAllHighlights={this.pinAllHighlights}
+                    goBack={this.goBack}
+                    prevStep={prevStep}
 
-                            />
+                    comment={this.state.comment}
 
+                    pins={this.state.pins}
 
-                            <Pins className={'pane pins'}
-                                  conceptClicked={this.conceptClicked}
+                    openModal={this.openModal}
+                    itemOrder={this.state.itemOrder}
 
-                                  pinChildren={this.pinChildren}
-
-                                  pins={this.state.pins}
-
-                                  openModal={this.openModal}
-                                  switchScreens={this.switchScreens}
-                                  seeConnections={this.seeConnections}
-
-                                  currentScreen={this.state.currentScreen}
-                                  concepts={this.state.concepts}
-
-                            />
+                    currentScreen={this.state.currentScreen}
+                />
 
 
+                <Highlights className={'pane highlights'}
+                            concepts={this.state.concepts}
+                            conceptGroup={this.state.conceptGroup}
+
+                            pins={this.state.pins}
+                            openModal={this.openModal}
+                            conceptClicked={this.conceptClicked}
+                            pinChildren={this.pinChildren}
+
+                            seeConnections={this.seeConnections}
+                            currentScreen={this.state.currentScreen}
+
+                            pinAllHighlights={this.pinAllHighlights}
+
+                />
 
 
+                <Pins className={'pane pins'}
+                      conceptClicked={this.conceptClicked}
 
-                        </div>
+                      pinChildren={this.pinChildren}
+
+                      pins={this.state.pins}
+
+                      openModal={this.openModal}
+                      switchScreens={this.switchScreens}
+                      seeConnections={this.seeConnections}
+
+                      currentScreen={this.state.currentScreen}
+                      concepts={this.state.concepts}
+
+                />
 
 
 
-                    </DragDropContext>
+
+
+            </div>
+
+
+
+                </DragDropContext>
 
                 </ThemeProvider>
 
 
 
-            );
-        return(
+                    );
+            return(
 
-            <ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>
 
 
 
@@ -474,92 +472,92 @@ export class App extends React.Component {
 
                 <div className={'App'}>
 
-                    <DragDropContext
-                        onBeforeCapture={this.onBeforeCapture}
-                        onBeforeDragStart={this.onBeforeDragStart}
-                        onDragStart={this.onDragStart}
-                        onDragUpdate={this.onDragUpdate}
-                        onDragEnd={this.onDragEnd}
-                    >
+                <DragDropContext
+                    onBeforeCapture={this.onBeforeCapture}
+                    onBeforeDragStart={this.onBeforeDragStart}
+                    onDragStart={this.onDragStart}
+                    onDragUpdate={this.onDragUpdate}
+                    onDragEnd={this.onDragEnd}
+                >
 
 
 
 
-                        <LightBox
-                            showModal={this.state.showModal}
-                            closeModal={this.closeModal}
-                            clauseId={this.state.clauseId}
-                            clauseName={this.state.clauseName}
-                            concepts={this.state.concepts}
-                            clauses={this.state.clauses}
-                            currentScreen={this.state.currentScreen}
-                        />
+            <LightBox
+                showModal={this.state.showModal}
+                closeModal={this.closeModal}
+                clauseId={this.state.clauseId}
+                clauseName={this.state.clauseName}
+                concepts={this.state.concepts}
+                clauses={this.state.clauses}
+                currentScreen={this.state.currentScreen}
+            />
 
-                        <Pins className={'pane pins'}
-                              conceptClicked={this.conceptClicked}
-                              concepts={this.state.concepts}
+            <Pins className={'pane pins'}
+                  conceptClicked={this.conceptClicked}
+                  concepts={this.state.concepts}
 
-                              pins={this.state.pins}
-                              pinChildren={this.pinChildren}
+                  pins={this.state.pins}
+                  pinChildren={this.pinChildren}
 
-                              openModal={this.openModal}
-                              switchScreens={this.switchScreens}
+                  openModal={this.openModal}
+                  switchScreens={this.switchScreens}
 
-                              exportPin={this.exportPin}
-                              exportChildren={this.exportChildren}
+                  exportPin={this.exportPin}
+                  exportChildren={this.exportChildren}
 
-                              currentScreen={this.state.currentScreen}
-                              toExport={this.state.toExport}
-                              seeConnections={this.seeConnections}
+                  currentScreen={this.state.currentScreen}
+                  toExport={this.state.toExport}
+                  seeConnections={this.seeConnections}
 
-                              exportAll={this.exportAll}
-
-
-
-                        />
-                        <Preview
-                            className={'pane preview'}
-
-                            conceptClicked={this.conceptClicked}
-                            addComment={this.addComment}
-
-                            conceptGroup={this.state.conceptGroup}
-                            pinChildren={this.pinChildren}
-                            seeConnections={this.seeConnections}
-
-                            goBack={this.goBack}
-
-                            comment={this.state.comment}
-
-                            pins={this.state.pins}
-
-                            openModal={this.openModal}
-                            itemOrder={this.state.itemOrder}
-                            currentScreen={this.state.currentScreen}
-
-                            exportPin={this.exportPin}
-                            exportChildren={this.exportChildren}
-
-                            toExport={this.state.toExport}
-                            clearPreview={this.clearPreview}
-                            concepts={this.state.concepts}
-
-
-                        />
-                        <ExportOptions className={'pane exportOptions'}/>
+                  exportAll={this.exportAll}
 
 
 
-                    </DragDropContext>
+            />
+            <Preview
+                className={'pane preview'}
 
-                </div>
+                conceptClicked={this.conceptClicked}
+                addComment={this.addComment}
 
-            </ThemeProvider>
+                conceptGroup={this.state.conceptGroup}
+                pinChildren={this.pinChildren}
+                seeConnections={this.seeConnections}
+
+                goBack={this.goBack}
+
+                comment={this.state.comment}
+
+                pins={this.state.pins}
+
+                openModal={this.openModal}
+                itemOrder={this.state.itemOrder}
+                currentScreen={this.state.currentScreen}
+
+                exportPin={this.exportPin}
+                exportChildren={this.exportChildren}
+
+                toExport={this.state.toExport}
+                clearPreview={this.clearPreview}
+                concepts={this.state.concepts}
+
+
+            />
+            <ExportOptions className={'pane exportOptions'}/>
+
+
+
+            </DragDropContext>
+
+            </div>
+
+                </ThemeProvider>
 
 
 
 
-        )
+                    )
     }
 }
 
